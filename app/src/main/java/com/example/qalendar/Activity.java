@@ -1,3 +1,5 @@
+package com.example.qalendar;
+
 import java.util.Scanner;
 public class Activity
 {
