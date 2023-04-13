@@ -1,3 +1,5 @@
+package com.example.qalendar;
+
 public class Average
 {
     //aaaaaaah i scream not fun analytics but it's fine though.
