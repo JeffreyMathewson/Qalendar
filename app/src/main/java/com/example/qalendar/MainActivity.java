@@ -1,7 +1,7 @@
 package com.example.qalendar;
-private FirebaseAnalytics mFirebaseAnalytics;
+//private FirebaseAnalytics mFirebaseAnalytics;
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+   //     mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 import androidx.appcompat.app.AppCompatActivity;
 
