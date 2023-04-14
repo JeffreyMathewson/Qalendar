@@ -2,7 +2,6 @@ package com.example.qalendar;
 //private FirebaseAnalytics mFirebaseAnalytics;
 
    //     mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-=======
 
 import android.app.Activity;
 import android.database.Cursor;
