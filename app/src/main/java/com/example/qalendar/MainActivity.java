@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
     private void initWidgets()
     {
-        //calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
+        calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
     }
     private void setMonthView()
