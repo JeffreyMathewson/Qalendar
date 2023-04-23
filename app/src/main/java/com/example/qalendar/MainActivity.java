@@ -4,14 +4,14 @@ package com.example.qalendar;
    //     mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
     private void initWidgets()
     {
-        calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
+        //calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
     }
     private void setMonthView()
