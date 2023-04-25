@@ -1,6 +1,7 @@
 package com.example.qalendar;
 
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 
@@ -32,6 +33,12 @@ public class Events {
     public String getTitle() {
         return title;
     }
+
+    EditText editText;
+
+    String stringDateSelected = "null";
+
+    DatabaseReference dbRef;
 
     public void setTitle(String title) {
         this.title = title;
@@ -76,8 +83,10 @@ public class Events {
 
     private void calendarClicked()
     {
-        DatabaseReference.child(stringDateSelected).addListenerForSingleValueEvent(new ValueEventListener()
+
+        dbRef.child(stringDateSelected).addListenerForSingleValueEvent(new ValueEventListener()
         {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
@@ -97,7 +106,7 @@ public class Events {
     }
 
     public void buttonSaveEvent(View view){
-        databaseReference.child(stringDateSelected).setValue(editText.getText().toString());
+        dbRef.child(stringDateSelected).setValue(editText.getText().toString());
     }
     //android:onClick="buttonSaveEvent" has to be done in <Button
 }
