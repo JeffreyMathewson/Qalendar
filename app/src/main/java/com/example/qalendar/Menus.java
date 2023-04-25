@@ -5,12 +5,15 @@ import java.util.Scanner;
 
 public class Menus
 {
-
+    private static final String[] OPTIONS = {"Month", "Day", "Year", "Hour", "Minute"};
     public static void EVTCreationMenu()
     {
 
     }
+    public static void EVTDelete()
+    {
 
+    }
     public static int EVTEditMenu()
     {
         Scanner sc = new Scanner(System.in);
@@ -18,17 +21,11 @@ public class Menus
         //add how to get the input and show how to get the events possible to appear
         System.out.print("What would you like to edit about the event?");
         // add input getter for either month, day, year, hour, or minute
-        int input = 0;
-        if (sc.next()  == "Month")
-            input = 1;
-        if (sc.next()  == "Day")
-            input = 2;
-        if (sc.next()  == "Year")
-            input = 3;
-        if (sc.next()  == "Hour")
-            input = 4;
-        if (sc.next()  == "Minute")
-            input = 5;
+        for (int i = 0; i < OPTIONS.length; i++)
+        {
+            System.out.printf("%d. %s\n", i+1, OPTIONS[i]);
+        }
+        int input = sc.nextInt();
         //while (menu.is.open() == true)
         {
 

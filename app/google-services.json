@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "513166664803",
+    "project_id": "qalendar-6e694",
+    "storage_bucket": "qalendar-6e694.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513166664803:android:51bbdd789289bed75b0456",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYPCKr2ncyvWkFT8gjhmGBYRwtLJu7x2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513166664803:android:8ca92c3160829b855b0456",
+        "android_client_info": {
+          "package_name": "com.example.qalendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYPCKr2ncyvWkFT8gjhmGBYRwtLJu7x2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

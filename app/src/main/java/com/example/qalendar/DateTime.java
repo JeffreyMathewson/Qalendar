@@ -1,8 +1,8 @@
 package com.example.qalendar;
 
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -10,10 +10,13 @@ public class DateTime
 {
     public static void main(String[] args)
     {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
-        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dtf = null;
+        dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+        LocalDateTime now = null;
+        now = LocalDateTime.now();
         System.out.println(dtf.format(now));
-    }
+        FormatDT();
+        }
 
     public static void FormatDT()
     {
