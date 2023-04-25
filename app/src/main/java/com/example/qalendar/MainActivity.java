@@ -27,14 +27,14 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     //testing
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-
+    private LocalDate selectedDate;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initWidgets();
-
+        selectedDate = LocalDate.now();
         setMonthView();
     }
 
@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     }
     private void setMonthView()
     {
-        monthYearText.setText(monthYearFromDate());
-        ArrayList<LocalDate> daysInMonth = daysInMonthArray();
+        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtils.selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);

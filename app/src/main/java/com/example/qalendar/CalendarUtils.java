@@ -10,19 +10,19 @@ public class CalendarUtils
 {
     public static LocalDate selectedDate = LocalDate.now();
 
-    public static String monthYearFromDate(){
+    public static String monthYearFromDate(LocalDate selectedDate){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-        return selectedDate.format(formatter);
+        return CalendarUtils.selectedDate.format(formatter);
     }
 
-    public static ArrayList<LocalDate> daysInMonthArray()
+    public static ArrayList<LocalDate> daysInMonthArray(LocalDate selectedDate)
     {
         ArrayList<LocalDate> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = YearMonth.from(selectedDate);
+        YearMonth yearMonth = YearMonth.from(CalendarUtils.selectedDate);
 
         int daysInMonth = yearMonth.lengthOfMonth();
 
-        LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
+        LocalDate firstOfMonth = CalendarUtils.selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
         for(int i = 1; i <= 52; i++){
@@ -31,7 +31,7 @@ public class CalendarUtils
             }
             else
             {
-                daysInMonthArray.add(LocalDate.of(selectedDate.getYear(),selectedDate.getMonth(),i - dayOfWeek));
+                daysInMonthArray.add(LocalDate.of(CalendarUtils.selectedDate.getYear(), CalendarUtils.selectedDate.getMonth(),i - dayOfWeek));
             }
         }
         return daysInMonthArray;
