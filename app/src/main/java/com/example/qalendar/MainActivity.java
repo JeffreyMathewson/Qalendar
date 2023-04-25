@@ -1,4 +1,8 @@
 package com.example.qalendar;
+//private FirebaseAnalytics mFirebaseAnalytics;
+
+   //     mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
 
 import static com.example.qalendar.CalendarUtils.daysInMonthArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
@@ -7,11 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -20,7 +30,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
-//testing
+    //testing
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
@@ -69,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
+        showTimePickerDialog();
+    }
+    public void showTimePickerDialog()
+    {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
     }
     public void weeklyAction(View view)
     {
