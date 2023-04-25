@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
+public class WeeklyViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
 
     private TextView monthYearText;
@@ -24,7 +24,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_week_view);
+        setContentView(R.layout.activity_weekly_view);
         initWidgets();
         setWeekView();
     }
