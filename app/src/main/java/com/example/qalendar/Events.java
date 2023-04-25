@@ -1,7 +1,16 @@
 package com.example.qalendar;
 
+import android.view.View;
+import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Date;
 
 public class Events {
@@ -24,6 +33,12 @@ public class Events {
     public String getTitle() {
         return title;
     }
+
+    EditText editText;
+
+    String stringDateSelected = "null";
+
+    DatabaseReference dbRef;
 
     public void setTitle(String title) {
         this.title = title;
@@ -68,8 +83,10 @@ public class Events {
 
     private void calendarClicked()
     {
-        databaseReference.child(stringDateSelected).addListenerForSingleValueEvent(new ValueEventListener()
+
+        dbRef.child(stringDateSelected).addListenerForSingleValueEvent(new ValueEventListener()
         {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
@@ -89,8 +106,8 @@ public class Events {
     }
 
     public void buttonSaveEvent(View view){
-        databaseReference.child(stringDateSelected).setValue(editText.getText().toString());
+        dbRef.child(stringDateSelected).setValue(editText.getText().toString());
     }
     //android:onClick="buttonSaveEvent" has to be done in <Button
 }
-}
+
