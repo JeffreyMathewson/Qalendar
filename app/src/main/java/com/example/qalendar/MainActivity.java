@@ -16,16 +16,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
@@ -88,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     }
     public void weeklyAction(View view)
     {
-        startActivity(new Intent(this, WeekViewActivity.class));
+        startActivity(new Intent(this, WeeklyViewActivity.class));
     }
     public void newEventAction(View view)
     {

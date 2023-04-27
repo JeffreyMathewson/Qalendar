@@ -11,27 +11,79 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Events {
-    private String title;
+public class Event {
+    public static ArrayList<Event> eventsList = new ArrayList<>();
+
+    public static ArrayList<Event> eventsForDate(LocalDate date)
+    {
+        ArrayList<Event> events = new ArrayList<>();
+    
+        for(Event event : eventsList)
+        {
+            if(event.getDate().equals(date)){
+                events.add(event);
+            }
+        }
+
+        return events;
+    }
+    private String name;
+    private LocalDate date;
+    private LocalTime time;
     private Date startTime;
     private Date endTime;
     private String location;
+
+
+
     private String description;
 
     private DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
 
-    public Events(String title, Date startTime, Date endTime, String location, String description) {
-        this.title = title;
+    public Event(String name, LocalDate date, LocalTime time) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String title) {
+        this.name = title;
+    }
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+
+
+
+
+
+    public Event(String title, Date startTime, Date endTime, String location, String description) {
+        this.name = title;
         this.startTime = startTime;
         this.endTime = endTime;
         this.location = location;
         this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     EditText editText;
@@ -39,10 +91,6 @@ public class Events {
     String stringDateSelected = "null";
 
     DatabaseReference dbRef;
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public Date getStartTime() {
         return startTime;

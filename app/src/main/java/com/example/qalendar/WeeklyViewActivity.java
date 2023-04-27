@@ -1,6 +1,5 @@
 package com.example.qalendar;
 
-import static com.example.qalendar.CalendarUtils.daysInMonthArray;
 import static com.example.qalendar.CalendarUtils.daysInWeekArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
 
@@ -11,22 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
+public class WeeklyViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+    private ListView eventListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_week_view);
+        setContentView(R.layout.activity_weekly_view);
         initWidgets();
         setWeekView();
     }
@@ -35,7 +35,9 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     {
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
+        eventListView = findViewById(R.id.eventListView);
     }
+
     private void setWeekView()
     {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
@@ -45,9 +47,8 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
+        setEventAdapter();
     }
-
-
 
     public void nextWeekAction(View view)
     {
@@ -73,5 +74,22 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         setWeekView();
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        setEventAdapter();
+    }
 
+    private void setEventAdapter()
+    {
+        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+        eventListView.setAdapter(eventAdapter);
+    }
+
+
+    public void newEventAction(View view)
+    {
+        startActivity(new Intent(this, EventEditActivity.class));
+    }
 }
