@@ -14,11 +14,10 @@
         <activity
             android:name=".WeeklyViewActivity"
             android:exported="false" />
+        <activity android:name=".EventEditActivity"
+            android:exported="false"/>
         <activity
             android:name=".MonthlyViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WeekViewTester"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

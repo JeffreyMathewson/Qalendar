@@ -35,15 +35,15 @@ public class Event {
     private String name;
     private LocalDate date;
     private LocalTime time;
-    private Date startTime;
-    private Date endTime;
-    private String location;
+    //private Date startTime;
+    //private Date endTime;
+    //private String location;
 
 
 
-    private String description;
+    //private String description;
 
-    private DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
+    //private DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
 
     public Event(String name, LocalDate date, LocalTime time) {
         this.name = name;
@@ -77,7 +77,7 @@ public class Event {
 
 
 
-
+    /*
     public Event(String title, Date startTime, Date endTime, String location, String description) {
         this.name = title;
         this.startTime = startTime;
@@ -157,5 +157,6 @@ public class Event {
         dbRef.child(stringDateSelected).setValue(editText.getText().toString());
     }
     //android:onClick="buttonSaveEvent" has to be done in <Button
+     */
 }
 

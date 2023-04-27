@@ -19,6 +19,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.ktx.Firebase;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseApp.initializeApp(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initWidgets();
@@ -86,6 +90,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     }
     public void newEventAction(View view)
     {
-
+        startActivity(new Intent(this, EventEditActivity.class));
     }
 }
