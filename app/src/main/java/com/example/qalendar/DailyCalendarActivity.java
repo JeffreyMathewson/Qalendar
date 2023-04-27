@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalTime;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class DailyCalendarActivity extends AppCompatActivity
@@ -51,7 +53,19 @@ public class DailyCalendarActivity extends AppCompatActivity
 
     private void setHourAdapter()
     {
-        HourAdapter
+        HourAdapter hourAdapter = new HourAdapter(getApplicationContext(), hourEventList());
+        hourListView.setAdapter(hourAdapter);
+    }
+
+    private ArrayList<HourEvent> hourEventList()
+    {
+        ArrayList<HourEvent> list = new ArrayList<>();
+        for(int hour = 0; hour < 24; hour++)
+        {
+            LocalTime time = LocalTime.of(hour,0);
+            ArrayList<Event> events
+        }
+        return list;
     }
 
     public void previousDayAction(View view)
