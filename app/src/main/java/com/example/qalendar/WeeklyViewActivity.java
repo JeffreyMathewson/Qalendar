@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+    private ListView eventListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,9 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
     {
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
+        eventListView = findViewById(R.id.eventListView);
     }
+
     private void setWeekView()
     {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
@@ -43,9 +47,8 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
+        setEventAdapter();
     }
-
-
 
     public void nextWeekAction(View view)
     {
@@ -71,5 +74,22 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
         setWeekView();
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        setEventAdapter();
+    }
 
+    private void setEventAdapter()
+    {
+        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+        eventListView.setAdapter(eventAdapter);
+    }
+
+
+    public void newEventAction(View view)
+    {
+        startActivity(new Intent(this, EventEditActivity.class));
+    }
 }

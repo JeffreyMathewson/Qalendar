@@ -2,6 +2,7 @@ package com.example.qalendar;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,19 +11,29 @@ public class CalendarUtils
 {
     public static LocalDate selectedDate = LocalDate.now();
 
-    public static String monthYearFromDate(LocalDate selectedDate){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-        return CalendarUtils.selectedDate.format(formatter);
+    public static String formattedDate(LocalDate selectedDate)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        return selectedDate.format(formatter);
+    }
+    public static String formattedTime(LocalTime time)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        return time.format(formatter);
+    }
+    public static String monthYearFromDate(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        return date.format(formatter);
     }
 
     public static ArrayList<LocalDate> daysInMonthArray(LocalDate selectedDate)
     {
         ArrayList<LocalDate> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = YearMonth.from(CalendarUtils.selectedDate);
+        YearMonth yearMonth = YearMonth.from(selectedDate);
 
         int daysInMonth = yearMonth.lengthOfMonth();
 
-        LocalDate firstOfMonth = CalendarUtils.selectedDate.withDayOfMonth(1);
+        LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
         for(int i = 1; i <= 52; i++){
@@ -31,7 +42,7 @@ public class CalendarUtils
             }
             else
             {
-                daysInMonthArray.add(LocalDate.of(CalendarUtils.selectedDate.getYear(), CalendarUtils.selectedDate.getMonth(),i - dayOfWeek));
+                daysInMonthArray.add(LocalDate.of(selectedDate.getYear(), selectedDate.getMonth(),i - dayOfWeek));
             }
         }
         return daysInMonthArray;
@@ -67,5 +78,6 @@ public class CalendarUtils
         }
         return null;
     }
+
 
 }
