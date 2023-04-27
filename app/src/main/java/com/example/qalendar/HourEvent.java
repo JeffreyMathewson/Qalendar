@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class HourEvent
 {
     LocalTime time;
-    ArrayList<Event> events
+    ArrayList<Event> events;
 
     public HourEvent(LocalTime time, ArrayList<Event> events)
     {
