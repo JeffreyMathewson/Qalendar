@@ -16,9 +16,11 @@ public class CalendarUtils
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
         return selectedDate.format(formatter);
     }
-    public static String formattedTime(LocalTime time)
-    {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+    public static String formattedTime(LocalTime time) {
+        if (time == null) {
+            return "";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
         return time.format(formatter);
     }
     public static String monthYearFromDate(LocalDate date){

@@ -1,20 +1,8 @@
 package com.example.qalendar;
 
-import android.view.View;
-import android.widget.EditText;
-
-import androidx.annotation.NonNull;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Event {
     public static ArrayList<Event> eventsList = new ArrayList<>();
@@ -45,7 +33,7 @@ public class Event {
 
     //private DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
 
-    public Event(String name, LocalDate date, LocalTime time) {
+    public Event(String name, LocalDate date, LocalTime time, LocalTime endTime) {
         this.name = name;
         this.date = date;
         this.time = time;
