@@ -44,15 +44,20 @@ public class DailyCalendarActivity extends AppCompatActivity
     private void setDayView()
     {
         monthDayText.setText(CalendarUtils.monthDayFromDate(selectedDate));
-        string dayOfWeek = selectedDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+        String dayOfWeek = selectedDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+        dayOfWeekTV.setText(dayOfWeek);
     }
 
     public void previousDayAction(View view)
     {
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusDays(1);
+        setDayView();
     }
 
     public void nextDayAction(View view)
     {
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusDays(1);
+        setDayView();
     }
 
     public void newEventAction(View view)
