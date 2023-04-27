@@ -46,6 +46,12 @@ public class DailyCalendarActivity extends AppCompatActivity
         monthDayText.setText(CalendarUtils.monthDayFromDate(selectedDate));
         String dayOfWeek = selectedDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
         dayOfWeekTV.setText(dayOfWeek);
+        setHourAdapter();
+    }
+
+    private void setHourAdapter()
+    {
+        HourAdapter
     }
 
     public void previousDayAction(View view)
