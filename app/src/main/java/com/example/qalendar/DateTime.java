@@ -1,5 +1,7 @@
 package com.example.qalendar;
 
+import android.annotation.SuppressLint;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +22,7 @@ public class DateTime
 
     public static void FormatDT()
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm");
         Date date = new Date();
         System.out.println("Current Date " + dateFormat.format(date));
         // Convert Date to Calendar
@@ -30,7 +32,7 @@ public class DateTime
 
     public static void UpdateDT()
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm");
         Calendar c = Calendar.getInstance();
         Date newDate = c.getTime();
         System.out.println("Updated Date " + dateFormat.format(newDate));
