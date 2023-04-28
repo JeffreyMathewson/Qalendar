@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
@@ -59,17 +60,28 @@ public class DailyCalendarActivity extends AppCompatActivity
 
     private ArrayList<HourEvent> hourEventList()
     {
+        LocalDateTime now = null;
+        LocalTime time;
+        ArrayList<Event> events;
+        HourEvent hourEvent;
+        now = LocalDateTime.now();
         ArrayList<HourEvent> list = new ArrayList<>();
         for(int hour = 0; hour < 24; hour++)
         {
-            LocalTime time = LocalTime.of(hour,0);
-            ArrayList<Event> events = Event.eventsForDateAndTime(selectedDate, time);
-            HourEvent hourEvent = new HourEvent(time, events);
-            list.add(hourEvent);
-            //LocalTime time2 = LocalTime.of(hour,30);
-            //ArrayList<Event> events2 = Event.eventsForDateAndTime(selectedDate, time2);
-            //HourEvent hourEvent2 = new HourEvent(time2, events2);
-            //list.add(hourEvent2);
+            time = LocalTime.of(hour, 0);
+            events = Event.eventsForDateAndTime(selectedDate, time);
+            hourEvent = new HourEvent(time, events);
+            if (now.getMinute() < 30)
+            {
+                list.add(hourEvent);
+            }
+            time = LocalTime.of(hour, 30);
+            events = Event.eventsForDateAndTime(selectedDate, time);
+            hourEvent = new HourEvent(time, events);
+            if (now.getMinute() >= 30)
+            {
+                list.add(hourEvent);
+            }
         }
         return list;
     }
