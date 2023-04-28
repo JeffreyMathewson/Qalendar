@@ -84,12 +84,13 @@ public class Login extends AppCompatActivity {
                 }
             });
 
+
         // For some reason, the @Override doesn't work here.
         // Adding a comma between onActivityResult and the ( adds another error.
         // Adding a semicolon between data and the ) fixes one of the errors.
         // Removing the @Nullable adds 2 errors.
         //@Override
-        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data;)
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
         {
             super.onActivityResult(requestCode, resultCode, data);
 
