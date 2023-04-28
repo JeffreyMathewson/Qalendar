@@ -21,7 +21,9 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.annotations.Nullable;
+
 import java.lang.Override;
+
 public class Login extends AppCompatActivity {
 
     // Part 1.
@@ -87,7 +89,7 @@ public class Login extends AppCompatActivity {
         // Adding a semicolon between data and the ) fixes one of the errors.
         // Removing the @Nullable adds 2 errors.
         //@Override
-        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data;)
         {
             super.onActivityResult(requestCode, resultCode, data);
 
@@ -100,11 +102,11 @@ public class Login extends AppCompatActivity {
                         String password = credential.getPassword();
                         if (idToken !=  null) {
                             // Got an ID token from Google. Use it to authenticate
-                            // with your backend.
+                            // with the backend.
                             Log.d(TAG, "Got ID token.");
                         } else if (password != null) {
                             // Got a saved username and password. Use them to authenticate
-                            // with your backend.
+                            // with the backend.
                             Log.d(TAG, "Got password.");
                         }
 
