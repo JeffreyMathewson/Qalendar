@@ -1,7 +1,11 @@
 package com.example.qalendar;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -13,15 +17,18 @@ import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.annotations.Nullable;
-
+import java.lang.Override;
 public class Login extends AppCompatActivity {
 
     // Part 1.
     private SignInClient oneTapClient;
     private BeginSignInRequest signInRequest;
+    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+    private boolean showOneTapUI = true;
 
     // Indicates that a method declaration is intended to override a method declaration in a supertype.
     // If a method is annotated with this annotation type compilers are required to generate an error
@@ -53,7 +60,7 @@ public class Login extends AppCompatActivity {
         // ...
         BeginSignInRequest signUpRequest;
         oneTapClient.beginSignIn(signUpRequest)
-                .addOnSuccessListener(this, new OnSuccessListener<BeginSignInResult>()) {
+                .addOnSuccessListener(this, new OnSuccessListener<BeginSignInResult>() {
 
              @Override
                 public void onSuccess(BeginSignInResult result) {
@@ -66,72 +73,93 @@ public class Login extends AppCompatActivity {
                     }
                 }
             })
-            .addOnFailureListener(this, new OnFailureListener()) {
+            .addOnFailureListener(this, new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     // No saved credentials found. Launch the One Tap sign-up flow, or
                     // do nothing and continue presenting the signed-out UI.
                     Log.d(TAG, e.getLocalizedMessage());
                 }
-            };
+            });
+
+        // For some reason, the @Override doesn't work here.
+        // Adding a comma between onActivityResult and the ( adds another error.
+        // Adding a semicolon between data and the ) fixes one of the errors.
+        // Removing the @Nullable adds 2 errors.
+        //@Override
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+        {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            switch (requestCode) {
+                case REQ_ONE_TAP:
+                    try {
+                        SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(data);
+                        String idToken = credential.getGoogleIdToken();
+                        String username = credential.getId();
+                        String password = credential.getPassword();
+                        if (idToken !=  null) {
+                            // Got an ID token from Google. Use it to authenticate
+                            // with your backend.
+                            Log.d(TAG, "Got ID token.");
+                        } else if (password != null) {
+                            // Got a saved username and password. Use them to authenticate
+                            // with your backend.
+                            Log.d(TAG, "Got password.");
+                        }
+
+                    } catch (ApiException e) {
+                        switch (e.getStatusCode()) {
+                            case CommonStatusCodes.CANCELED:
+                                Log.d(TAG, "One-tap dialog was closed.");
+                                // Don't re-prompt the user.
+                                showOneTapUI = false;
+                                break;
+                            case CommonStatusCodes.NETWORK_ERROR:
+                                Log.d(TAG, "One-tap encountered a network error.");
+                                // Try again or just ignore.
+                                break;
+                            default:
+                                Log.d(TAG, "Couldn't get credential from result."
+                                        + e.getLocalizedMessage());
+                                break;
+                        }
+
+                    }
+                    break;
+        }
+
     }
 
-
-    // Part 2
-    /*oneTapClient.beginSignIn(signUpRequest)
-            .addOnSuccessListener(this, new OnSuccessListener<BeginSignInResult>()) {
-        @Override
-        public void onSuccess(BeginSignInResult result) {
-            try {
-                startIntentSenderForResult(
-                        result.getPendingIntent().getIntentSender(), REQ_ONE_TAP,
-                        null, 0, 0, 0);
-            } catch (IntentSender.SendIntentException e) {
-                Log.e(TAG, "Couldn't start One Tap UI: " + e.getLocalizedMessage());
-            }
-        }
-    })
-            .addOnFailureListener(this, new OnFailureListener()) {
-        @Override
-        public void onFailure(@NonNull Exception e) {
-            // No saved credentials found. Launch the One Tap sign-up flow, or
-            // do nothing and continue presenting the signed-out UI.
-            Log.d(TAG, e.getLocalizedMessage());
-        }
-    };*/
-
-
-    // Part 3
-    // ...
-    /*private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
-    private boolean showOneTapUI = true;
-    // ...
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        /*@Override
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
             case REQ_ONE_TAP:
                 try {
-                    SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(data);
-                    String idToken = credential.getGoogleIdToken();
-                    String username = credential.getId();
-                    String password = credential.getPassword();
-                    if (idToken !=  null) {
-                        // Got an ID token from Google. Use it to authenticate
-                        // with your backend.
-                        Log.d(TAG, "Got ID token.");
-                    } else if (password != null) {
-                        // Got a saved username and password. Use them to authenticate
-                        // with your backend.
-                        Log.d(TAG, "Got password.");
-                    }
-                } catch (ApiException e) {
                     // ...
+                } catch (ApiException e) {
+                    switch (e.getStatusCode()) {
+                        case CommonStatusCodes.CANCELED:
+                            Log.d(TAG, "One-tap dialog was closed.");
+                            // Don't re-prompt the user.
+                            showOneTapUI = false;
+                            break;
+                        case CommonStatusCodes.NETWORK_ERROR:
+                            Log.d(TAG, "One-tap encountered a network error.");
+                            // Try again or just ignore.
+                            break;
+                        default:
+                            Log.d(TAG, "Couldn't get credential from result."
+                                    + e.getLocalizedMessage());
+                            break;
+                    }
                 }
                 break;
         }
     }*/
+
+    }
     // ...
 }
