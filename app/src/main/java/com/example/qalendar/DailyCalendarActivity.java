@@ -66,6 +66,10 @@ public class DailyCalendarActivity extends AppCompatActivity
             ArrayList<Event> events = Event.eventsForDateAndTime(selectedDate, time);
             HourEvent hourEvent = new HourEvent(time, events);
             list.add(hourEvent);
+            LocalTime time2 = LocalTime.of(hour,30);
+            ArrayList<Event> events2 = Event.eventsForDateAndTime(selectedDate, time2);
+            HourEvent hourEvent2 = new HourEvent(time2, events2);
+            list.add(hourEvent2);
         }
         return list;
     }
@@ -85,5 +89,13 @@ public class DailyCalendarActivity extends AppCompatActivity
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
+    }
+    public void weeklyAction(View view)
+    {
+        startActivity(new Intent(this, WeeklyViewActivity.class));
+    }
+    public void monthlyAction(View view)
+    {
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.ktx.Firebase;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     public void weeklyAction(View view)
     {
         startActivity(new Intent(this, WeeklyViewActivity.class));
+    }
+    public void dailyAction(View view)
+    {
+        startActivity(new Intent(this, DailyCalendarActivity.class));
     }
     public void newEventAction(View view)
     {

@@ -35,11 +35,7 @@ public class CalendarUtils
 
     public static String monthDayFromDate(LocalDate date)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd");
-
-    public static String monthYearFromDate(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d");
         return date.format(formatter);
     }
 
@@ -52,8 +48,8 @@ public class CalendarUtils
         LocalDate prevMonth = selectedDate.minusMonths(1);
         LocalDate nextMonth = selectedDate.plusMonths(1);
 
-        YearMonth prevYearMonth = YearMonth.from(selectedDate);
-        int prevDaysInMonth = yearMonth.lengthOfMonth();
+        YearMonth prevYearMonth = YearMonth.from(prevMonth);
+        int prevDaysInMonth = prevYearMonth.lengthOfMonth();
 
         LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
