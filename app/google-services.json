@@ -1,62 +1,33 @@
 {
   "project_info": {
-    "project_number": "513166664803",
-    "project_id": "qalendar-6e694",
-    "storage_bucket": "qalendar-6e694.appspot.com"
+    "project_number": "586130292385",
+    "project_id": "qalendar-true",
+    "storage_bucket": "qalendar-true.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:513166664803:android:51bbdd789289bed75b0456",
-        "android_client_info": {
-          "package_name": "com.android.application"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDYPCKr2ncyvWkFT8gjhmGBYRwtLJu7x2w"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:513166664803:android:8ca92c3160829b855b0456",
+        "mobilesdk_app_id": "1:586130292385:android:1b45904f110f9fe979bae0",
         "android_client_info": {
           "package_name": "com.example.qalendar"
         }
       },
       "oauth_client": [
         {
-          "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
+          "client_id": "586130292385-rq7vu49ngh37e3tif4k019ii2jt4mfkb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDYPCKr2ncyvWkFT8gjhmGBYRwtLJu7x2w"
+          "current_key": "AIzaSyBdh7DLzIepg53wMGbu-QJ8zzR7WX8ZnsI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
+              "client_id": "586130292385-rq7vu49ngh37e3tif4k019ii2jt4mfkb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
