@@ -97,13 +97,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
-        showTimePickerDialog();
     }
-    public void showTimePickerDialog()
-    {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
-    }
+
     public void weeklyAction(View view)
     {
         startActivity(new Intent(this, WeeklyViewActivity.class));
