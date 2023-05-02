@@ -79,7 +79,7 @@ public class DailyCalendarActivity extends AppCompatActivity
             time2 = LocalTime.of(hour, 30);
             events2 = Event.eventsForDateAndTime(selectedDate, time2);
             halfHourEvent = new HourEvent(time2, events2);
-            list2.add(halfHourEvent);
+            list.add(halfHourEvent);
         }
         return list;
     }
