@@ -19,7 +19,25 @@ public class Event {
     
         for(Event event : eventsList)
         {
-            if(event.getDate().equals(date)){
+            if(event.getDate().equals(date))
+            {
+                events.add(event);
+            }
+        }
+
+        return events;
+    }
+
+    public static ArrayList<Event> eventsForDateAndTime(LocalDate date, LocalTime time)
+    {
+        ArrayList<Event> events = new ArrayList<>();
+
+        for(Event event : eventsList)
+        {
+            int eventHour = event.time.getHour();
+            int cellHour = time.getHour();
+            if(event.getDate().equals(date) && eventHour == cellHour)
+            {
                 events.add(event);
             }
         }
