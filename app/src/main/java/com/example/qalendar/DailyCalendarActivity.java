@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
@@ -54,18 +55,31 @@ public class DailyCalendarActivity extends AppCompatActivity
     private void setHourAdapter()
     {
         HourAdapter hourAdapter = new HourAdapter(getApplicationContext(), hourEventList());
+        HourAdapter hourAdapter2 = new HourAdapter(getApplicationContext(), hourEventList());
         hourListView.setAdapter(hourAdapter);
+        hourListView.setAdapter(hourAdapter2);
     }
 
     private ArrayList<HourEvent> hourEventList()
     {
+        LocalDateTime now = null;
+        LocalTime time, time2;
+        ArrayList<Event> events, events2;
+        HourEvent hourEvent;
+        HourEvent halfHourEvent;
+        now = LocalDateTime.now();
         ArrayList<HourEvent> list = new ArrayList<>();
+        ArrayList<HourEvent> list2 = new ArrayList<>();
         for(int hour = 0; hour < 24; hour++)
         {
-            LocalTime time = LocalTime.of(hour,0);
-            ArrayList<Event> events = Event.eventsForDateAndTime(selectedDate, time);
-            HourEvent hourEvent = new HourEvent(time, events);
+            time = LocalTime.of(hour, 0);
+            events = Event.eventsForDateAndTime(selectedDate, time);
+            hourEvent = new HourEvent(time, events);
             list.add(hourEvent);
+            time2 = LocalTime.of(hour, 30);
+            events2 = Event.eventsForDateAndTime(selectedDate, time2);
+            halfHourEvent = new HourEvent(time2, events2);
+            list2.add(halfHourEvent);
         }
         return list;
     }
@@ -85,5 +99,13 @@ public class DailyCalendarActivity extends AppCompatActivity
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
+    }
+    public void weeklyAction(View view)
+    {
+        startActivity(new Intent(this, WeeklyViewActivity.class));
+    }
+    public void monthlyAction(View view)
+    {
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -1,7 +1,6 @@
 package com.example.qalendar;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
@@ -12,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Locale;
 
@@ -20,6 +22,7 @@ public class EventEditActivity extends AppCompatActivity
     private EditText eventNameET;
     private TextView eventDateET, eventTimeET;
     private LocalTime time;
+    private Event event;
 
     //Event Time picker variables
     Button startButton;
@@ -51,6 +54,10 @@ public class EventEditActivity extends AppCompatActivity
 
     public void saveEventAction(View view)
     {
+        LocalDate date = LocalDate.now();
+        event = new Event("test", date ,time);
+        event.buttonSaveEvent(view);
+
         String eventName = eventNameET.getText().toString();
         Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
         Event.eventsList.add(newEvent);
