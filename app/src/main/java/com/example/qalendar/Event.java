@@ -1,8 +1,14 @@
 package com.example.qalendar;
 
+import android.view.View;
+import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Event {
     public static ArrayList<Event> eventsList = new ArrayList<>();
@@ -33,7 +39,7 @@ public class Event {
 
     //private DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
 
-    public Event(String name, LocalDate date, LocalTime time, LocalTime endTime) {
+    public Event(String name, LocalDate date, LocalTime time) {
         this.name = name;
         this.date = date;
         this.time = time;
