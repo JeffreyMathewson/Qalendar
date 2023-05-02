@@ -1,20 +1,21 @@
 {
   "project_info": {
     "project_number": "513166664803",
+    "firebase_url": "https://qalendar-6e694-default-rtdb.firebaseio.com",
     "project_id": "qalendar-6e694",
     "storage_bucket": "qalendar-6e694.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:513166664803:android:51bbdd789289bed75b0456",
+        "mobilesdk_app_id": "1:513166664803:android:ad7398dc05e655315b0456",
         "android_client_info": {
-          "package_name": "com.android.application"
+          "package_name": "com.example.qalendar"
         }
       },
       "oauth_client": [
         {
-          "client_id": "513166664803-66pp9chl42b2f5kht06aq6h6to0qlhi5.apps.googleusercontent.com",
+          "client_id": "513166664803-jjm198jcfkgcdomkr3o6jggqc5mu916s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
