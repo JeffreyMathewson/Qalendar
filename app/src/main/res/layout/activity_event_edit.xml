@@ -51,6 +51,25 @@
         android:textColor="@color/black"
         tools:ignore="MissingConstraints" />
     <Button
+        android:id="@+id/startTimeButton"
+        android:onClick="startTimePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Time"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:background="@null"/>
+    <Button
+        android:id="@+id/endTimeButton"
+        android:onClick="endTimePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Time"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:background="@null"/>
+
+    <Button
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

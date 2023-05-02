@@ -24,8 +24,10 @@ import java.util.ArrayList;
                 this.days = days;
             }
 
-            @Override
-            public void onClick(View view) {
-                onItemListener.OnItemClick(getAdapterPosition(), days.get(getAdapterPosition()));
-            }
-        }
+    @Override
+    public void onClick(View view)
+    {
+
+        onItemListener.OnItemClick(getAdapterPosition(), days.get(getAdapterPosition()));
+    }
+}
