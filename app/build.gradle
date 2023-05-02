@@ -2,11 +2,7 @@ buildscript {
     repositories {
         // Make sure that you have the following two repositories
         google()  // Google's Maven repository
-
         mavenCentral()  // Maven Central repository
-
-    }
-    dependencies {
 
     }
 }
@@ -27,10 +23,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        //resValue "string", "firebase_database_url", "https://qalendar-6e694-default-rtdb.firebaseio.com"
-        // "string", "google_app_id", "1:513166664803:android:51bbdd789289bed75b0456"
-        //resValue "string", "google_api_key", "AIzaSyDYPCKr2ncyvWkFT8gjhmGBYRwtLJu7x2w"
-        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -60,6 +52,8 @@ dependencies {
 
 dependencies {
 
+
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.0'
     implementation 'com.google.firebase:firebase-database:20.2.0'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.2.1'
     // Import the Firebase BoM
@@ -69,6 +63,9 @@ dependencies {
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-messaging'
 
 
     // Add the dependencies for any other desired Firebase products

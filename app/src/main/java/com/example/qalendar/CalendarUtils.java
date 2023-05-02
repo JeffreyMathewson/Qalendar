@@ -1,14 +1,18 @@
 package com.example.qalendar;
 
+import android.widget.Toast;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class CalendarUtils {
     public static LocalDate selectedDate = LocalDate.now();
+
 
     public static String formattedDate(LocalDate selectedDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
@@ -32,42 +36,44 @@ public class CalendarUtils {
         return date.format(formatter);
     }
 
-    public static String monthDayFromDate(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd");
+
+    public static String monthDayFromDate(LocalDate date)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d");
         return date.format(formatter);
     }
 
-    public static ArrayList<LocalDate> daysInMonthArray() {
-
+    public static ArrayList<LocalDate> daysInMonthArray()
+    {
         ArrayList<LocalDate> daysInMonthArray = new ArrayList<>();
         YearMonth yearMonth = YearMonth.from(selectedDate);
         int daysInMonth = yearMonth.lengthOfMonth();
+
+        LocalDate prevMonth = selectedDate.minusMonths(1);
+        LocalDate nextMonth = selectedDate.plusMonths(1);
+
+        YearMonth prevYearMonth = YearMonth.from(prevMonth);
+        int prevDaysInMonth = prevYearMonth.lengthOfMonth();
+
         LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
-        // Populating days from the previous month to pad out the beginning of the first week
-        LocalDate prevMonth = selectedDate.minusMonths(1);
-        int daysInPrevMonth = prevMonth.lengthOfMonth();
-        int daysToAddFromPrevMonth = dayOfWeek - 1;
-        for (int i = daysInPrevMonth - daysToAddFromPrevMonth + 1; i <= daysInPrevMonth; i++) {
-            daysInMonthArray.add(LocalDate.of(prevMonth.getYear(), prevMonth.getMonth(), i));
+        for(int i = 1; i <= 52; i++){
+            if( i <= dayOfWeek)
+            {
+                daysInMonthArray.add(LocalDate.of(prevMonth.getYear(), prevMonth.getMonth(),prevDaysInMonth + i - dayOfWeek));
+            }
+            else if (i > daysInMonth + dayOfWeek)
+            {
+                daysInMonthArray.add(LocalDate.of(nextMonth.getYear(), nextMonth.getMonth(),i - dayOfWeek - daysInMonth));
+            }
+            else
+            {
+                daysInMonthArray.add(LocalDate.of(selectedDate.getYear(), selectedDate.getMonth(),i - dayOfWeek));
+            }
         }
-
-        // Populating days in the current month
-        for (int i = 1; i <= daysInMonth; i++) {
-            daysInMonthArray.add(LocalDate.of(selectedDate.getYear(), selectedDate.getMonth(), i));
-        }
-
-        // Populating days from the next month to pad out the ending of the last week
-        LocalDate nextMonth = selectedDate.plusMonths(1);
-        int daysToAddFromNextMonth = 7 - daysInMonthArray.size() % 7;
-        for (int i = 1; i <= daysToAddFromNextMonth; i++) {
-            daysInMonthArray.add(LocalDate.of(nextMonth.getYear(), nextMonth.getMonth(), i));
-        }
-
         return daysInMonthArray;
     }
-
 
     public static ArrayList<LocalDate> daysInWeekArray(LocalDate selectedDate) {
         ArrayList<LocalDate> days = new ArrayList<>();
