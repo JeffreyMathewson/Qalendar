@@ -2,6 +2,7 @@ package com.example.qalendar;
 
 import static com.example.qalendar.CalendarUtils.daysInMonthArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
+import static com.example.qalendar.Notifications.sendNotification;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -97,7 +98,10 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
-        showTimePickerDialog();
+        // Thread.sleep(5000);
+        // Delay to test popup
+        sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
+        // Test popup
     }
     public void showTimePickerDialog()
     {
