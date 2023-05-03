@@ -12,10 +12,17 @@
         android:theme="@style/Theme.Qalendar"
         tools:targetApi="31">
         <activity
-            android:name=".ColorPicker"
+
+            android:name=".DailyCalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".WeeklyViewActivity"
+            android:exported="false" />
+        <activity android:name=".EventEditActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MonthlyViewActivity"
+
             android:exported="false" />
         <activity
             android:name=".MainActivity"
