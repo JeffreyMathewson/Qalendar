@@ -4,7 +4,9 @@ import static com.example.qalendar.CalendarUtils.daysInMonthArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
 import static com.example.qalendar.Notifications.sendNotification;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -12,10 +14,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,19 +30,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
-{
-    //testing
+public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
+
+    private static final int NOTIFICATION_PERMISSION_CODE = 1;
+
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
-    FirebaseFirestore firestore;
+    private FirebaseFirestore firestore;
 
+    private static final int PERMISSION_REQUEST_NOTIFICATION = 1;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         firestore = FirebaseFirestore.getInstance();
+
+// Check if the app has permission to display notifications
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_BOOT_COMPLETED)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Request the notification permission from the user
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.RECEIVE_BOOT_COMPLETED},
+                    NOTIFICATION_PERMISSION_CODE);
+        }
 
         //need start,end,name.duration,description
         Map<String,Object> user = new HashMap<>();
@@ -63,13 +79,12 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         setMonthView();
     }
 
-    private void initWidgets()
-    {
+    private void initWidgets() {
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
     }
-    private void setMonthView()
-    {
+
+    private void setMonthView() {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray();
 
@@ -79,29 +94,30 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         calendarRecyclerView.setAdapter(calendarAdapter);
     }
 
-    public void previousMonthAction(View view)
-    {
+    public void previousMonthAction(View view) {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
         setMonthView();
     }
-    public void nextMonthAction(View view)
-    {
+
+    public void nextMonthAction(View view) {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
         setMonthView();
     }
-
     @Override
-    public void OnItemClick(int position, LocalDate date)
-    {
-        if(date != null)
-        {
+    public void OnItemClick(int position, LocalDate date) {
+        if (date != null) {
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
-        // Thread.sleep(5000);
-        // Delay to test popup
-        sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
-        // Test popup
+
+        // Check if permission to show notifications has been granted
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED) {
+            // If not, request permission
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_NOTIFICATION_POLICY}, PERMISSION_REQUEST_NOTIFICATION);
+        } else {
+            // If permission granted, show notification
+            sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
+        }
     }
     public void showTimePickerDialog()
     {
