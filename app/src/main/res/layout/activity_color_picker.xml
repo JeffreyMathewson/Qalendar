@@ -8,7 +8,8 @@
     tools:context=".ColorPicker">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/colorButton"
+        android:onClick="openColorPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
