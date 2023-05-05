@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     int mDefaultColor1;
     int mDefaultColor2;
     int mDefaultColor3;
+
     private Button colorButton1;
+    private Button colorButton2;
 
 
     FirebaseFirestore firestore;
@@ -91,6 +93,14 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
         });
 
+        colorButton2 = findViewById(R.id.colorButton2);
+        colorButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openColorPicker(view);
+            }
+        });
+
         // I was shown this same code. The only thing that could be wrong here would be the openColorPicker(View) method.
 
 
@@ -104,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
         colorButton1 = findViewById(R.id.colorButton1);
+        colorButton2 = findViewById(R.id.colorButton2);
         mLayout = findViewById(R.id.monthLayout);
     }
     void setMonthView()
@@ -162,10 +173,28 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 mDefaultColor1 = color;
+                mLayout.setBackgroundColor(mDefaultColor1);
+            }
+        });
+
+        colorer.show();
+    }
+
+    /*public void openColorPicker2(View view) {
+        AmbilWarnaDialog colorer2 = new AmbilWarnaDialog(this, mDefaultColor2, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                mDefaultColor2 = color;
                 mLayout.setBackgroundColor(color);
             }
         });
 
         colorer.show();
     }
+    */
 }
