@@ -79,3 +79,9 @@ dependencies {
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
 }
 
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+}
+

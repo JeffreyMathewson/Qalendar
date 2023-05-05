@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     int mDefaultColor1;
     int mDefaultColor2;
     int mDefaultColor3;
-    private Button colorButton;
-    Button mButton;
+    private Button colorButton1;
 
 
     FirebaseFirestore firestore;
@@ -82,12 +81,17 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         mDefaultColor3 = ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_background); // R.color.colorBackground. There seems to be no colorTertiary.
 
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        // I changed it from mButton to colorButton and then back to mButton.
+        colorButton1 = findViewById(R.id.colorButton1);
+        colorButton1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                openColorPicker(view);
+            public void onClick(View v) {
+                // Handle button click event
+                openColorPicker(v);
             }
         });
+
+        // I was shown this same code. The only thing that could be wrong here would be the openColorPicker(View) method.
 
 
         initWidgets();
@@ -99,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     {
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
-        colorButton = findViewById(R.id.colorButton);
+        colorButton1 = findViewById(R.id.colorButton1);
         mLayout = findViewById(R.id.monthLayout);
     }
     void setMonthView()
@@ -149,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     }
 
     public void openColorPicker(View view) {
-        AmbilWarnaDialog colorer = new AmbilWarnaDialog(this, colorPicker.mDefaultColor1, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+        AmbilWarnaDialog colorer = new AmbilWarnaDialog(this, mDefaultColor1, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
 
@@ -157,8 +161,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
-                colorPicker.mDefaultColor1 = color;
-                colorPicker.mLayout.setBackgroundColor(colorPicker.mDefaultColor1);
+                mDefaultColor1 = color;
+                mLayout.setBackgroundColor(color);
             }
         });
 
