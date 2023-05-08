@@ -34,7 +34,7 @@ public class Notifications {
         // Building Notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifsmall)
-                // Uncomment this once we have an icon, then link to it.
+                // For whatever our icon ends up being
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

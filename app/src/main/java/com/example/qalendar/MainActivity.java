@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -48,13 +50,33 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
         firestore = FirebaseFirestore.getInstance();
 
-// Check if the app has permission to display notifications
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_BOOT_COMPLETED)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Request the notification permission from the user
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.RECEIVE_BOOT_COMPLETED},
-                    NOTIFICATION_PERMISSION_CODE);
+// Permissions Code
+    // Register the permissions callback, which handles the user's response to the
+    // system permissions dialog. Save the return value, an instance of
+    // ActivityResultLauncher, as an instance variable.
+        ActivityResultLauncher<String> requestPermissionLauncher =
+                registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                    if (isGranted) {
+                        // Permission is granted. Continue the action or workflow in your
+                        // app.
+                    } else {
+                        // Explain to the user that the feature is unavailable because the
+                        // feature requires a permission that the user has denied. At the
+                        // same time, respect the user's decision. Don't link to system
+                        // settings in an effort to convince the user to change their
+                        // decision.
+                        throw new RuntimeException("We need permission to display notifications.");
+                    }
+                });
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED) {
+            // You can use the API that requires the permission.
+            //performAction(...);
+        } else {
+            // You can directly ask for the permission.
+            // The registered ActivityResultCallback gets the result of this request.
+            requestPermissionLauncher.launch(
+                    Manifest.permission.POST_NOTIFICATIONS);
         }
 
         //need start,end,name.duration,description
@@ -109,15 +131,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
-
-        // Check if permission to show notifications has been granted
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED) {
-            // If not, request permission
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_NOTIFICATION_POLICY}, PERMISSION_REQUEST_NOTIFICATION);
-        } else {
-            // If permission granted, show notification
             sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
-        }
     }
     public void showTimePickerDialog()
     {
