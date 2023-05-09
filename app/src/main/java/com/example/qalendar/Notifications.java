@@ -8,6 +8,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+// Working as intended, needs a proper icon.
 public class Notifications {
 
     // Notification channel values and names
