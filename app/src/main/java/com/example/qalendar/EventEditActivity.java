@@ -9,12 +9,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class EventEditActivity extends AppCompatActivity
 {
@@ -23,8 +33,11 @@ public class EventEditActivity extends AppCompatActivity
     private LocalTime time;
     private Event event;
 
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     //Event Time picker variables
     Button startButton;
+    private TextView  descriptionEt;
+    private Button startTimeButton, endTimeButton;
     int hour, minute;
 
     @SuppressLint("SetTextI18n")
@@ -46,21 +59,37 @@ public class EventEditActivity extends AppCompatActivity
 
     private void initWidgets()
     {
+        descriptionEt = findViewById(R.id.descriptionEt);
         eventNameET = findViewById(R.id.eventNameET);
         eventDateET = findViewById(R.id.eventDateET);
         eventTimeET = findViewById(R.id.eventTimeET);
+        startTimeButton = findViewById(R.id.startTimeButton);
+        endTimeButton = findViewById(R.id.endTimeButton);
     }
+
 
     public void saveEventAction(View view)
     {
         LocalDate date = LocalDate.now();
-        event = new Event("test", date ,time);
-        event.buttonSaveEvent(view);
-
-        String eventName = eventNameET.getText().toString();
-        Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
-        Event.eventsList.add(newEvent);
-        finish();
+        Map<String,Object> events = new HashMap<>();
+        events.put("event Name", eventNameET);
+        events.put("start time", startTimeButton);
+        events.put("End Time", endTimeButton);
+        events.put("Priority", 0);
+        events.put("Popularity", 0);
+        events.put("date", date);
+        events.put("description", descriptionEt);
+        firestore.collection("Tests").add(events).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     //Event time picker methods

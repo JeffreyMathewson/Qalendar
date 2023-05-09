@@ -11,10 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     //testing
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-
+    Event evt;
     FirebaseFirestore firestore;
 
 
@@ -42,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
         //need start,end,name.duration,description
         Map<String,Object> user = new HashMap<>();
-        user.put("firstName", "Easy");
+        user.put("firstName",  "no");
         user.put("lastName", "Hard");
-        user.put("description", "PLs Work");
+        user.put("description", "Pls Work");
         firestore.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
@@ -97,12 +95,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
-        showTimePickerDialog();
-    }
-    public void showTimePickerDialog()
-    {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
     }
     public void weeklyAction(View view)
     {
