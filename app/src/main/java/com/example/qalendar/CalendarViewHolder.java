@@ -27,7 +27,6 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View view)
     {
-
         onItemListener.OnItemClick(getAdapterPosition(), days.get(getAdapterPosition()));
     }
 }

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MonthlyViewActivity">
+
     <RelativeLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
@@ -24,6 +25,7 @@
             android:textStyle="bold"
             android:onClick="weeklyAction"
             android:textSize="20sp" />
+
         <Button
 
             android:layout_width="wrap_content"
@@ -146,5 +148,6 @@
         android:id="@+id/calenderRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>
 

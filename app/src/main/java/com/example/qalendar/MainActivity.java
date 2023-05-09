@@ -40,20 +40,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
+public class MainActivity extends AppCompatActivity
 {
     //testing
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
     private ActivityMainBinding binding;
-
     private static final int RC_SIGN_IN = 100;
     private GoogleSignInClient googleSignInClient;
-
     private FirebaseAuth firebaseAuth;
-
     private static final String TAG = "GOOGLE_SIGN_IN_TAG";
+
+    private MonthlyViewActivity monthlyViewActivity;
     FirebaseFirestore firestore;
 
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        //configure google sign in
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -84,28 +83,27 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
         });
         //need start,end,name.duration,description
-        Map<String,Object> user = new HashMap<>();
-        user.put("firstName", "Easy");
-        user.put("lastName", "Hard");
-        user.put("description", "PLs Work");
-        firestore.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        initWidgets();
-        LocalDate selectedDate = LocalDate.now();
-        setMonthView();
+//        Map<String,Object> user = new HashMap<>();
+//        user.put("firstName", "Easy");
+//        user.put("lastName", "Hard");
+//        user.put("description", "PLs Work");
+//        firestore.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//            @Override
+//            public void onSuccess(DocumentReference documentReference) {
+//                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
+//            }
+//        });
+        monthlyViewActivity = new MonthlyViewActivity();
+        //monthlyViewActivity.onCreate(savedInstanceState);
     }
 
     private void checkUser() {
+        //if user is already signed in, take them to Profile Activity class
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null){
             Log.d(TAG, "checkUser: Already logged in");
@@ -171,51 +169,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                 });
     }
 
-    private void initWidgets()
-    {
-        calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
-        monthYearText = findViewById(R.id.monthyeartv);
-    }
-    private void setMonthView()
-    {
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
-        ArrayList<LocalDate> daysInMonth = daysInMonthArray();
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        calendarRecyclerView.setLayoutManager(layoutManager);
-        calendarRecyclerView.setAdapter(calendarAdapter);
-    }
 
-    public void previousMonthAction(View view)
-    {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
-        setMonthView();
-    }
-    public void nextMonthAction(View view)
-    {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
-        setMonthView();
-    }
 
-    @Override
-    public void OnItemClick(int position, LocalDate date)
-    {
-        if(date != null)
-        {
-            CalendarUtils.selectedDate = date;
-            setMonthView();
-        }
-    }
-
-    public void weeklyAction(View view)
-    {
-        startActivity(new Intent(this, WeeklyViewActivity.class));
-    }
-    public void dailyAction(View view)
-    {
-        startActivity(new Intent(this, DailyCalendarActivity.class));
-    }
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));

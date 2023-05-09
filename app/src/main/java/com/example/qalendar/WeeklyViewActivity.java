@@ -62,10 +62,7 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
         setWeekView();
     }
 
-    public void monthlyAction(View view)
-    {
-        startActivity(new Intent(this, MainActivity.class));
-    }
+
 
     @Override
     public void OnItemClick(int position, LocalDate date)
@@ -96,5 +93,9 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
     public void dailyAction(View view)
     {
         startActivity(new Intent(this, DailyCalendarActivity.class));
+    }
+    public void monthlyAction(View view)
+    {
+        startActivity(new Intent(this, MonthlyViewActivity.class));
     }
 }
