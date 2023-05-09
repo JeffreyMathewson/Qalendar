@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
-    // Color Picker:
+    // Color Picker (the one that was working):
     /*
     // Do I even need this parameter?
         // It seems like I do, but it is never actually used.
