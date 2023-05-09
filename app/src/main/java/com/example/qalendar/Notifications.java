@@ -17,6 +17,7 @@ public class Notifications {
     private static final String CHANNEL_DESCRIPTION = "Notifications for your Time Flies Calendar";
     private static final int NOTIFICATION_ID = 1;
 
+    //<editor-fold desc="sendNotification Method">
     public static void sendNotification(Context context, String title, String message) {
 
         // Initializing a Notification Manager instance
@@ -44,4 +45,14 @@ public class Notifications {
         // Displaying Notification
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Building a notification for a specific event.">
+    public static void notifyForEvent(Runnable context, Event currentEvent) {
+            String currentEventName = currentEvent.getName();
+            //String currentEventDesc = currentEvent.getDescription();
+            sendNotification((Context) context, currentEventName, "test");
+            //currentEventDesc
+        }
+    //</editor-fold>
 }

@@ -2,6 +2,8 @@ package com.example.qalendar;
 
 import static com.example.qalendar.CalendarUtils.daysInMonthArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
+import static com.example.qalendar.Event.eventsList;
+import static com.example.qalendar.Notifications.notifyForEvent;
 import static com.example.qalendar.Notifications.sendNotification;
 
 import android.Manifest;
@@ -19,7 +21,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,20 +58,19 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         // Register the permissions callback, which handles the user's response to the
         // system permissions dialog. Save the return value, an instance of
         // ActivityResultLauncher, as an instance variable.
-        ActivityResultLauncher<String> requestPermissionLauncher =
-                registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                    if (isGranted) {
-                        // Permission is granted. Continue the action or workflow in your
-                        // app.
-                    } else {
-                        // Explain to the user that the feature is unavailable because the
-                        // feature requires a permission that the user has denied. At the
-                        // same time, respect the user's decision. Don't link to system
-                        // settings in an effort to convince the user to change their
-                        // decision.
-                        requestNotificationPermission();
-                    }
-                });
+        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                // Permission is granted. Continue the action or workflow in your
+                // app.
+            } else {
+                // Explain to the user that the feature is unavailable because the
+                // feature requires a permission that the user has denied. At the
+                // same time, respect the user's decision. Don't link to system
+                // settings in an effort to convince the user to change their
+                // decision.
+                requestNotificationPermission();
+            }
+        });
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             // You can use the API that requires the permission.
@@ -80,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
         }
         //</editor-fold>
-
 
         //<editor-fold desc="Load and display default month view at runtime">
         Map<String,Object> user = new HashMap<>();
@@ -103,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         LocalDate selectedDate = LocalDate.now();
         setMonthView();
         //</editor-fold>
+
+        // Checking for any events occurring at the current time.
+        startImmediateCheckThread();
+
     }
     //</editor-fold>
 
@@ -124,13 +128,19 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     //</editor-fold>
 
     //<editor-fold desc="OnItemClick Action">
-    @Override
     public void OnItemClick(int position, LocalDate date) {
         if (date != null) {
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
-            sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+            sendNotification(getApplicationContext(),"TEST NOTIFICATION", "This has been a test of the notification system");
+        } else {
+            // Permission is not granted, request it
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            // !!!DO NOT DELETE THIS!!!
+            // !!!COMMENT IT OUT IF YOU MUST, BUT I WILL NEED THIS CODE LATER!!!
+        }
     }
     //</editor-fold>
 
@@ -179,5 +189,33 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     {
         startActivity(new Intent(this, EventEditActivity.class));
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Immediate Event Checking">
+    private void startImmediateCheckThread() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int lastMinute = -1;
+                Calendar calendar = Calendar.getInstance();
+                while (!Thread.currentThread().isInterrupted()) {
+                    calendar.setTimeInMillis(System.currentTimeMillis());
+                    int currentMinute = calendar.get(Calendar.MINUTE);
+                    if (currentMinute != lastMinute) {
+                        lastMinute = currentMinute;
+                        for (Event eventInList : eventsList) {
+                            Calendar eventCalendar = Calendar.getInstance();
+                            eventCalendar.setTime(eventInList.getStartTime());
+                            if (eventCalendar.get(Calendar.MINUTE) == currentMinute) {
+                                notifyForEvent(this, eventInList);
+                            }
+                        }
+                    }
+                }
+            }
+        }).start();
+    }
+
+
     //</editor-fold>
 }
