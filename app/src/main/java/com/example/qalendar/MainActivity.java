@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     //</editor-fold>
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-
     private FirebaseFirestore firestore;
 
+    //<editor-fold desc="OnCreate Runtime Code">
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         }
         //</editor-fold>
 
-        //need start,end,name.duration,description
+
+        //<editor-fold desc="Load and display default month view at runtime">
         Map<String,Object> user = new HashMap<>();
         user.put("firstName", "Easy");
         user.put("lastName", "Hard");
@@ -101,13 +102,46 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         initWidgets();
         LocalDate selectedDate = LocalDate.now();
         setMonthView();
+        //</editor-fold>
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Notification Permission Request Method">
+    private void requestNotificationPermission() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Notification Permissions Required");
+        builder.setMessage("Qalender requires notification permissions to reach its full potential. Please enable notifications in your settings, then re-launch the app.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Ask for notification permission again
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="OnItemClick Action">
+    @Override
+    public void OnItemClick(int position, LocalDate date) {
+        if (date != null) {
+            CalendarUtils.selectedDate = date;
+            setMonthView();
+        }
+            sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="initWidgets Method">
     private void initWidgets() {
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
     }
+    //</editor-fold>
 
+    //<editor-fold desc="SetMonthView, Previous/Next Month Methods">
     private void setMonthView() {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray();
@@ -127,32 +161,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
         setMonthView();
     }
-
-    //<editor-fold desc="Notification Permission Request Method">
-    private void requestNotificationPermission() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Notification Permissions Required");
-        builder.setMessage("Qalender requires notification permissions to reach its full potential. Please enable notifications in your settings, then re-launch the app.");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Ask for notification permission again
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
-    }
     //</editor-fold>
-    @Override
-    public void OnItemClick(int position, LocalDate date) {
-        if (date != null) {
-            CalendarUtils.selectedDate = date;
-            setMonthView();
-        }
-            sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
-    }
 
+    //<editor-fold desc="Weekly & Daily View Actions">
     public void weeklyAction(View view)
     {
         startActivity(new Intent(this, WeeklyViewActivity.class));
@@ -161,8 +172,12 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     {
         startActivity(new Intent(this, DailyCalendarActivity.class));
     }
+    //</editor-fold>
+
+    //<editor-fold desc="New Event Action">
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
     }
+    //</editor-fold>
 }
