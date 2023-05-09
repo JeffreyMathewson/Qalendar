@@ -15,13 +15,13 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,9 +31,11 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     //testing
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-
+    View view;
     FirebaseFirestore firestore;
-
+    Event evt;
+    public LocalTime time;
+    LocalDate date;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +43,17 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         firestore = FirebaseFirestore.getInstance();
 
         //need start,end,name.duration,description
+        //time = evt.getTime();
         Map<String,Object> user = new HashMap<>();
-        user.put("firstName", "Easy");
-        user.put("lastName", "Hard");
-        user.put("description", "PLs Work");
-        firestore.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        user.put("evt start", startTimeButton);
+        user.put("evt end", 1);
+        user.put("title", "name");
+        user.put("duration", 1);
+        user.put("Priority", 0);
+        user.put("Popularity", 0);
+        user.put("Date", date);
+        user.put("description", "Pls Work");
+        firestore.collection("Tests").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();

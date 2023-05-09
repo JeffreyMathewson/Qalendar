@@ -63,12 +63,10 @@ public class Event {
 
     private String name;
     private LocalDate date;
-    private LocalTime time;
+    public LocalTime time;
     private Date startTime;
     private Date endTime;
     private String location;
-
-
     private String description;
 
     private DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
