@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         //need start,end,name.duration,description
         //time = evt.getTime();
         Map<String,Object> user = new HashMap<>();
-        user.put("evt start", startTimeButton);
+        user.put("evt start", 0);
         user.put("evt end", 1);
         user.put("title", "name");
         user.put("duration", 1);
