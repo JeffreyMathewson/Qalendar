@@ -32,6 +32,7 @@ public class ColorPicker3 extends AppCompatActivity {
 
         mDefaultColor1 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_primary); // R.color.colorPrimary
         mDefaultColor2 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_secondary); // R.color.colorSecondary
+        mDefaultColor3 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_background); // R.color.colorBackground
 
         mButton1 = (Button) findViewById(R.id.button1);
         mButton1.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +47,14 @@ public class ColorPicker3 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openColorPicker2();
+            }
+        });
+
+        mButton3 = (Button) findViewById(R.id.button3);
+        mButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openColorPicker3();
             }
         });
     }
@@ -77,6 +86,21 @@ public class ColorPicker3 extends AppCompatActivity {
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 mDefaultColor2 = color;
                 mLayout.setBackgroundColor(mDefaultColor2);
+            }
+        });
+    }
+
+    public void openColorPicker3() {
+        AmbilWarnaDialog colorPicker3 = new AmbilWarnaDialog(this, mDefaultColor3, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                mDefaultColor3 = color;
+                mLayout.setBackgroundColor(mDefaultColor3);
             }
         });
     }
