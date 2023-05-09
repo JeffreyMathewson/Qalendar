@@ -89,7 +89,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             @Override
             public void onClick(View v) {
                 // Handle button click event
-                openColorPicker(v);
+                //openColorPicker(v);
+
+                startActivity(new Intent(MainActivity.this, ColorPicker3.class));
             }
         });
 
@@ -164,6 +166,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
+    // Color Picker:
+    /*
     // Do I even need this parameter?
         // It seems like I do, but it is never actually used.
     public void openColorPicker(View view) {
@@ -181,8 +185,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         });
 
         colorer.show();
-    }
+    }*/
 
+    // Other Color Picker thing. I don't think I need it anymore.
     /*public void openColorPicker2(View view) {
         AmbilWarnaDialog colorer2 = new AmbilWarnaDialog(this, mDefaultColor2, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
