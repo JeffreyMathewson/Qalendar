@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class HourEvent
 {
-    LocalTime time;
+    LocalTime time,halfTime;
     ArrayList<Event> events;
 
     public HourEvent(LocalTime time, ArrayList<Event> events)

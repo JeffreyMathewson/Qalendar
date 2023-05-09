@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Qalendar</string>
+    <string name="default_web_client_id">qalendar-6e694</string>
 </resources>
