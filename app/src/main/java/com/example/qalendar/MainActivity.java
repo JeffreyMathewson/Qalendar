@@ -164,6 +164,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
+    // Do I even need this parameter?
+        // It seems like I do, but it is never actually used.
     public void openColorPicker(View view) {
         AmbilWarnaDialog colorer = new AmbilWarnaDialog(this, mDefaultColor1, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
