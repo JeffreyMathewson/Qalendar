@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Qalendar</string>
     <string name="default_web_client_id">qalendar-6e694</string>
+    <string name="weekly">Weekly</string>
+    <string name="daily">Daily</string>
+    <string name="month">Month</string>
+    <string name="color_picker_1">Color Picker 1</string>
+    <string name="color_picker_2">Color Picker 2</string>
+    <string name="color_picker_3">Color Picker 3</string>
 </resources>
