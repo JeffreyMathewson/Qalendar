@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Event {
+
     public class Vars
     {
         String name = "test";

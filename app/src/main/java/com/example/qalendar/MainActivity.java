@@ -6,6 +6,8 @@ import static com.example.qalendar.CalendarUtils.monthYearFromDate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +31,11 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     //testing
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-    Event evt;
     FirebaseFirestore firestore;
+    private TextView  descriptionEt;
+    private Button startTimeButton, endTimeButton;
+    private EditText eventNameET;
+    private TextView eventDateET, eventTimeET;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +44,15 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         firestore = FirebaseFirestore.getInstance();
 
         //need start,end,name.duration,description
-        Map<String,Object> user = new HashMap<>();
-        user.put("firstName",  "no");
-        user.put("lastName", "Hard");
-        user.put("description", "Pls Work");
-        firestore.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        Map<String,Object> events = new HashMap<>();
+        events.put("event Name", eventNameET);
+        events.put("start time", eventTimeET);
+        events.put("End Time", null);
+        events.put("Priority", 0);
+        events.put("Popularity", 0);
+        events.put("date", eventDateET);
+        events.put("description", descriptionEt);
+        firestore.collection("tests").add(events).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
@@ -64,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     {
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
+        descriptionEt = findViewById(R.id.descriptionEt);
+        eventNameET = findViewById(R.id.eventNameET);
+        eventDateET = findViewById(R.id.eventDateET);
+        eventTimeET = findViewById(R.id.eventTimeET);
+        startTimeButton = findViewById(R.id.startTimeButton);
+        endTimeButton = findViewById(R.id.endTimeButton);
     }
     private void setMonthView()
     {
