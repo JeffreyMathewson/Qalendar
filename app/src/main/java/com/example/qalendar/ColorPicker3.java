@@ -13,14 +13,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ColorPicker3 extends AppCompatActivity {
 
-    // Is this layout going to work with all three?
     ConstraintLayout mLayout1;
-    //ConstraintLayout mLayout2;
-    //ConstraintLayout mLayout3;
-
-    private Button mButton1;
-    private Button mButton2;
-    private Button mButton3;
 
     int mDefaultColor1;
     int mDefaultColor2;
@@ -41,31 +34,18 @@ public class ColorPicker3 extends AppCompatActivity {
         mDefaultColor3 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_background); // R.color.colorBackground
 
         // This area being first has nothing to do with the second and third Color Pickers not opening.
-        mButton1 = (Button) findViewById(R.id.button1);
-        mButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Button mButton1 = (Button) findViewById(R.id.button1);
+        mButton1.setOnClickListener(view -> {
 
-                // Commenting out this line causes the first Color Picker not to open either.
-                openColorPicker1();
-            }
+            // Commenting out this line causes the first Color Picker not to open either.
+            openColorPicker1();
         });
 
-        mButton2 = (Button) findViewById(R.id.button2);
-        mButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openColorPicker2();
-            }
-        });
+        Button mButton2 = (Button) findViewById(R.id.button2);
+        mButton2.setOnClickListener(view -> openColorPicker2());
 
-        mButton3 = (Button) findViewById(R.id.button3);
-        mButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openColorPicker3();
-            }
-        });
+        Button mButton3 = (Button) findViewById(R.id.button3);
+        mButton3.setOnClickListener(view -> openColorPicker3());
     }
 
     public void openColorPicker1() {
