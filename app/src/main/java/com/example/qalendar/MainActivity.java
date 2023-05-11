@@ -78,11 +78,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
 
 
-        mDefaultColor1 = ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_primary); // R.color.colorPrimary.
-        mDefaultColor2 = ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary); // R.color.colorSecondary.
-        mDefaultColor3 = ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_background); // R.color.colorBackground. There seems to be no colorTertiary.
-
-
         // I changed it from mButton to colorButton and then back to mButton.
         colorButton1 = findViewById(R.id.colorButton1);
         colorButton1.setOnClickListener(new View.OnClickListener() {
@@ -94,17 +89,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                 startActivity(new Intent(MainActivity.this, ColorPicker3.class));
             }
         });
-
-
-//        colorButton2 = findViewById(R.id.colorButton2);
-//        colorButton2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openColorPicker(view);
-//            }
-//        });
-
-        // I was shown this same code. The only thing that could be wrong here would be the openColorPicker(View) method.
 
 
         initWidgets();
@@ -166,43 +150,4 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
-    // Color Picker (the one that was working):
-    /*
-    // Do I even need this parameter?
-        // It seems like I do, but it is never actually used.
-    public void openColorPicker(View view) {
-        AmbilWarnaDialog colorer = new AmbilWarnaDialog(this, mDefaultColor1, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
-
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                mDefaultColor1 = color;
-                mLayout.setBackgroundColor(mDefaultColor1);
-            }
-        });
-
-        colorer.show();
-    }*/
-
-    // Other Color Picker thing. I don't think I need it anymore.
-    /*public void openColorPicker2(View view) {
-        AmbilWarnaDialog colorer2 = new AmbilWarnaDialog(this, mDefaultColor2, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
-
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                mDefaultColor2 = color;
-                mLayout.setBackgroundColor(color);
-            }
-        });
-
-        colorer.show();
-    }
-    */
 }
