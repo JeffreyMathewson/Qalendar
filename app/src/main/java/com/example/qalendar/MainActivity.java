@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity
                 SignIn();
             }
         });
+
         //</editor-fold>
     }
     //</editor-fold>
@@ -168,6 +169,7 @@ public class MainActivity extends AppCompatActivity
             setMonthView();
         }
             sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
+
     }
 
     private void SignIn() {

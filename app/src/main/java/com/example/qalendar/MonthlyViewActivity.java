@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class MonthlyViewActivity extends AppCompatActivity {
+public class MonthlyViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
@@ -80,4 +80,7 @@ public class MonthlyViewActivity extends AppCompatActivity {
         setMonthView();
     }
 
+    public void settingsAction(View view) {
+        startActivity(new Intent(this, Settings.class));
+    }
 }
