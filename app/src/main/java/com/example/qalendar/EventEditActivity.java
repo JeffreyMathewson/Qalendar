@@ -12,25 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class EventEditActivity extends AppCompatActivity
 {
@@ -38,6 +30,7 @@ public class EventEditActivity extends AppCompatActivity
     private TextView eventDateET, eventTimeET;
     private LocalTime time;
     private Event event;
+    int startTime;
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
@@ -80,25 +73,6 @@ public class EventEditActivity extends AppCompatActivity
     public void saveEventAction(View view)
     {
         //LocalDate date = LocalDate.now();
-        Map<String,Object> events = new HashMap<>();
-        events.put("event Name", eventNameET);
-        events.put("start time", startTimeButton);
-        events.put("End Time", endTimeButton);
-        events.put("Priority", 1);
-        events.put("Popularity", 1);
-        events.put("date", 1);
-        events.put("description", descriptionEt);
-        firestore.collection("test").add(events).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
-            }
-        });
 
         initWidgets();
         LocalDate selectedDate = LocalDate.now();
@@ -116,7 +90,7 @@ public class EventEditActivity extends AppCompatActivity
         calendarRecyclerView.setAdapter(calendarAdapter);
     }
     //Event time picker methods
-    public void startTimePicker(View view) {
+    public int startTimePicker(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
@@ -131,6 +105,7 @@ public class EventEditActivity extends AppCompatActivity
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, true);
         timePickerDialog.setTitle("Select Start Time");
         timePickerDialog.show();
+        return 0;
     }
 
     public void endTimePicker(View view) {

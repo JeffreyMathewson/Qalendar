@@ -6,7 +6,6 @@ import static com.example.qalendar.CalendarUtils.monthYearFromDate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,21 +32,24 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private RecyclerView calendarRecyclerView;
     FirebaseFirestore firestore;
     private TextView  descriptionEt;
-    private Button startTimeButton, endTimeButton;
     private EditText eventNameET;
     private TextView eventDateET, eventTimeET;
+    int start;
+    View view;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firestore = FirebaseFirestore.getInstance();
+        //EventEditActivity edited = new EventEditActivity();
+        //start = edited.startTime;
 
         //need start,end,name.duration,description
         Map<String,Object> events = new HashMap<>();
         events.put("event Name", eventNameET);
         events.put("start time", eventTimeET);
-        events.put("End Time", null);
+        events.put("End Time", 0);
         events.put("Priority", 0);
         events.put("Popularity", 0);
         events.put("date", eventDateET);
@@ -77,8 +79,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         eventNameET = findViewById(R.id.eventNameET);
         eventDateET = findViewById(R.id.eventDateET);
         eventTimeET = findViewById(R.id.eventTimeET);
-        startTimeButton = findViewById(R.id.startTimeButton);
-        endTimeButton = findViewById(R.id.endTimeButton);
     }
     private void setMonthView()
     {
