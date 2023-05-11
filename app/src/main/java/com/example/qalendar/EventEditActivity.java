@@ -69,32 +69,8 @@ public class EventEditActivity extends AppCompatActivity
     {
         LocalDate date = LocalDate.now();
         //event = new Event(eventNameET, date ,startTimeButton, endTimeButton, descriptionEt);
-
         firestore = FirebaseFirestore.getInstance();
 
-        //need start,end,name,duration,description
-        Map<String,Object> events = new HashMap<>();
-        events.put("event Name", eventNameET);
-        events.put("date", date);
-        events.put("start time", startTimeButton);
-        events.put("End Time", endTimeButton);
-        events.put("description", descriptionEt);
-        firestore.collection("Events").add(events).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-
-        //Event newEvent = new Event(eventNameET, CalendarUtils.selectedDate, time);
-        //Event.eventsList.add(newEvent);
         finish();
     }
 
