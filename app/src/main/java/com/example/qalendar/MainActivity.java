@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
 //                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
 //            }
 //        });
-        monthlyViewActivity = new MonthlyViewActivity();
+
         //monthlyViewActivity.onCreate(savedInstanceState);
     }
 
@@ -155,10 +155,8 @@ public class MainActivity extends AppCompatActivity
                             Log.d(TAG, "OnSuccess: Existing User...\n: "+email);
                             Toast.makeText(MainActivity.this, "Existing User...\n"+email, Toast.LENGTH_SHORT).show();
                         }
-
-                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        googleLoginAction();
                         finish();
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -170,10 +168,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
-    public void newEventAction(View view)
-    {
-        startActivity(new Intent(this, EventEditActivity.class));
+    public void googleLoginAction(){
+        startActivity(new Intent(this, ProfileActivity.class));
     }
 }
