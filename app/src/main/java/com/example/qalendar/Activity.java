@@ -22,6 +22,8 @@ public class Activity
         sTime = GetEvtStart();
         eTime = GetEvtEnd();
         duration = eTime - sTime;
+
+        // Did I misunderstand, or should it actually be duration > 24.00?
         if(duration < 24.00)
         {
             System.out.print("This event is way too long, you should shorten the time.");
