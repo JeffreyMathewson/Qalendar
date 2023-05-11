@@ -1,51 +1,72 @@
 package com.example.qalendar;
 
-import androidx.appcompat.app.ActionBar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-import com.example.qalendar.databinding.ActivityProfileBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ActivityProfileBinding binding;
-    private ActionBar actionBar;
-    private FirebaseAuth firebaseAuth;
+    TextView name, email;
+    Button logout;
+
+    GoogleSignInClient gsc;
+    GoogleSignInOptions gso;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityProfileBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_profile);
+        name = findViewById(R.id.logtxt);
+        email = findViewById(R.id.emailTv);
+        logout = findViewById(R.id.logoutBtn);
 
-        actionBar = getSupportActionBar();
-        actionBar.setTitle("LogIn");
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        gsc = GoogleSignIn.getClient(this, gso);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        checkUser();
 
-        binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account != null){
+            String Name = account.getDisplayName();
+            String Email = account.getEmail();
+
+            name.setText(Name);
+            email.setText(Email);
+        }
+        
+        logout.setOnClickListener(new View.OnClickListener(){
+
             @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                checkUser();
+            public void onClick(View v) {
+                SignOut();
             }
         });
+        
     }
 
-    private void checkUser(){
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser == null){
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
-        else{
-            String email = firebaseUser.getEmail();
-            binding.emailTv.setText(email);
-        }
+    private void SignOut() {
+        gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+
     }
+
+
 }
