@@ -62,12 +62,10 @@ public class DailyCalendarActivity extends AppCompatActivity
 
     private ArrayList<HourEvent> hourEventList()
     {
-        LocalDateTime now = null;
         LocalTime time, time2;
         ArrayList<Event> events, events2;
         HourEvent hourEvent;
         HourEvent halfHourEvent;
-        now = LocalDateTime.now();
         ArrayList<HourEvent> list = new ArrayList<>();
         ArrayList<HourEvent> list2 = new ArrayList<>();
         for(int hour = 0; hour < 24; hour++)
@@ -106,6 +104,6 @@ public class DailyCalendarActivity extends AppCompatActivity
     }
     public void monthlyAction(View view)
     {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MonthlyViewActivity.class));
     }
 }

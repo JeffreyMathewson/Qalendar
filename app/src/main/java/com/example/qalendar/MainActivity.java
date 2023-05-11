@@ -10,21 +10,40 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.qalendar.databinding.ActivityMainBinding;
+import com.google.android.gms.auth.api.identity.BeginSignInRequest;
+import com.google.android.gms.auth.api.identity.Identity;
+import com.google.android.gms.auth.api.identity.SignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,25 +52,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
 
+public class MainActivity extends AppCompatActivity
+{
+  
     //<editor-fold desc="Permission initialization">
     private static final int NOTIFICATION_PERMISSION_CODE = 1;
     private static final int PERMISSION_REQUEST_NOTIFICATION = 1;
     private ActivityResultLauncher<String> requestPermissionLauncher;
     //</editor-fold>
-    private TextView monthYearText;
-    private RecyclerView calendarRecyclerView;
-    private FirebaseFirestore firestore;
 
-    //<editor-fold desc="OnCreate Runtime Code">
-    @Override
+    SignInClient oneTapClient;
+    BeginSignInRequest signInRequest;
+    ImageView google_img;
+    private static final int RC_SIGN_IN = 100;
+    private GoogleSignInClient gsc;
+    private GoogleSignInOptions gso;
+    private FirebaseAuth firebaseAuth;
+    private static final String TAG = "GOOGLE_SIGN_IN_TAG";
+    FirebaseFirestore firestore;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         firestore = FirebaseFirestore.getInstance();
-
         //<editor-fold desc="Permission Requesting at runtime">
         // Register the permissions callback, which handles the user's response to the
         // system permissions dialog. Save the return value, an instance of
@@ -79,29 +104,40 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             // The registered ActivityResultCallback gets the result of this request.
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
         }
-        //</editor-fold>
+        
+        oneTapClient = Identity.getSignInClient(this);
+        signInRequest = BeginSignInRequest.builder()
+                .setPasswordRequestOptions(BeginSignInRequest
+                        .PasswordRequestOptions.builder()
+                        .setSupported(true).build())
+                .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                        .setSupported(true)
+                        .setServerClientId(getString(R.string.default_web_client_id))
+                        .setFilterByAuthorizedAccounts(true)
+                        .build())
+                .setAutoSelectEnabled(true)
+                .build();
 
 
-        //<editor-fold desc="Load and display default month view at runtime">
-        Map<String,Object> user = new HashMap<>();
-        user.put("firstName", "Easy");
-        user.put("lastName", "Hard");
-        user.put("description", "PLs Work");
-        firestore.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        google_img = findViewById(R.id.google);
+        firestore = FirebaseFirestore.getInstance();
+
+        //configure google sign in
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        gsc = GoogleSignIn.getClient(this, gso);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        checkUser();
+
+        google_img.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
+            public void onClick(View view){
+                SignIn();
             }
         });
-
-        initWidgets();
-        LocalDate selectedDate = LocalDate.now();
-        setMonthView();
         //</editor-fold>
     }
     //</editor-fold>
@@ -123,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     }
     //</editor-fold>
 
+
     //<editor-fold desc="OnItemClick Action">
     @Override
     public void OnItemClick(int position, LocalDate date) {
@@ -132,52 +169,88 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         }
             sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
     }
-    //</editor-fold>
 
-    //<editor-fold desc="initWidgets Method">
-    private void initWidgets() {
-        calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
-        monthYearText = findViewById(R.id.monthyeartv);
+    private void SignIn() {
+        Intent intent = gsc.getSignInIntent();
+        startActivityForResult(intent, RC_SIGN_IN);
+    }
+    
+    private void checkUser() {
+        //if user is already signed in, take them to Profile Activity class
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null){
+            Log.d(TAG, "checkUser: Already logged in");
+            startActivity(new Intent(this, ProfileActivity.class));
+            finish();
+        }
     }
     //</editor-fold>
 
-    //<editor-fold desc="SetMonthView, Previous/Next Month Methods">
-    private void setMonthView() {
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
-        ArrayList<LocalDate> daysInMonth = daysInMonthArray();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        calendarRecyclerView.setLayoutManager(layoutManager);
-        calendarRecyclerView.setAdapter(calendarAdapter);
+        if (requestCode == RC_SIGN_IN){
+            Task<GoogleSignInAccount> accountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = accountTask.getResult(ApiException.class);
+                HomeActivity();
+                //firebaseAuthWithGoogleAccount(account);
+
+            }
+            catch (Exception e){
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
-    public void previousMonthAction(View view) {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
-        setMonthView();
+    private void HomeActivity() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+        startActivity(intent);
     }
 
-    public void nextMonthAction(View view) {
-        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
-        setMonthView();
-    }
-    //</editor-fold>
+//    private void firebaseAuthWithGoogleAccount(GoogleSignInAccount account) {
+//        Log.d(TAG, "firebaseAuthWithGoogleAccount: begin firebase auth with google account");
+//        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+//        firebaseAuth.signInWithCredential(credential)
+//                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+//                    @Override
+//                    public void onSuccess(AuthResult authResult) {
+//                        Log.d(TAG, "OnSuccess: Logged In");
+//
+//                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+//
+//                        String uid = firebaseUser.getUid();
+//                        String email = firebaseUser.getEmail();
+//
+//                        Log.d(TAG, "OnSuccess: Email: "+email);
+//                        Log.d(TAG, "OnSuccess: UID: "+uid);
+//
+//                        if (authResult.getAdditionalUserInfo().isNewUser()){
+//                            Log.d(TAG, "OnSuccess: Account Created...\n"+email);
+//                            Toast.makeText(MainActivity.this, "Account Created...\n"+email, Toast.LENGTH_SHORT).show();
+//                        }
+//                        else{
+//                            Log.d(TAG, "OnSuccess: Existing User...\n: "+email);
+//                            Toast.makeText(MainActivity.this, "Existing User...\n"+email, Toast.LENGTH_SHORT).show();
+//                        }
+//                        googleLoginAction();
+//                        finish();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d(TAG, "OnFailure: Loggin Failed "+e.getMessage());
+//                    }
+//                });
+//    }
+//
+//
+//    public void googleLoginAction(){
+//        startActivity(new Intent(this, ProfileActivity.class));
+//    }
 
-    //<editor-fold desc="Weekly & Daily View Actions">
-    public void weeklyAction(View view)
-    {
-        startActivity(new Intent(this, WeeklyViewActivity.class));
-    }
-    public void dailyAction(View view)
-    {
-        startActivity(new Intent(this, DailyCalendarActivity.class));
-    }
-    //</editor-fold>
 
-    //<editor-fold desc="New Event Action">
-    public void newEventAction(View view)
-    {
-        startActivity(new Intent(this, EventEditActivity.class));
-    }
-    //</editor-fold>
 }

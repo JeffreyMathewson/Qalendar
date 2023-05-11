@@ -1,33 +1,28 @@
 package com.example.qalendar;
 
-import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-public class Event {
-    public class Vars
-    {
-        String name = "test";
-        int date = 1;
-    }
+public class Event extends AppCompatActivity
+{
+    FirebaseFirestore firestore;
+
     public static ArrayList<Event> eventsList = new ArrayList<>();
 
     public static ArrayList<Event> eventsForDate(LocalDate date) {
@@ -60,6 +55,9 @@ public class Event {
 
         return events;
     }
+    public LocalDate getDate() {
+        return date;
+    }
 
     private String name;
     private LocalDate date;
@@ -73,22 +71,12 @@ public class Event {
 
     private DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
 
-    public Event(String name, LocalDate date, LocalTime time) {
-        this.name = name;
-        this.date = date;
-        this.time = time;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String title) {
         this.name = title;
-    }
-
-    public LocalDate getDate() {
-        return date;
     }
 
     public void setDate(LocalDate date) {
@@ -104,11 +92,11 @@ public class Event {
     }
 
 
-    public Event(String title, Date startTime, Date endTime, String location, String description) {
+    public Event(String title, Date startTime, Date endTime, LocalDate date, String description) {
         this.name = title;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.location = location;
+        this.date = date;
         this.description = description;
     }
 
@@ -168,36 +156,15 @@ public class Event {
                     editText.setText("null");
                 }
             }
-
-            @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
 
-    public void buttonSaveEvent(View view) {
-        fRef = FirebaseFirestore.getInstance();
-        Vars vars = new Vars();
-        Map<String, String> user = new HashMap<>();
-        user.put("Event name", "test");
-        fRef.collection("Events")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                //Toast.makeText(Event.this, "Success", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
 
-            }
-        });
-        //android:onClick="buttonSaveEvent" has to be done in <Button
-        //Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG).show();
 
-    }
+
 
 }
 
