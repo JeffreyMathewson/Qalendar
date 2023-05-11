@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
 
 
-        // I changed it from mButton to colorButton and then back to mButton.
         colorButton1 = findViewById(R.id.colorButton1);
         colorButton1.setOnClickListener(new View.OnClickListener() {
             @Override

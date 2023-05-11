@@ -11,6 +11,9 @@ import android.widget.Button;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
+import com.github.QuadFlask.colorpicker.ColorPickerDialog;
+import com.github.QuadFlask.colorpicker.OnColorSelectedListener;
+
 public class ColorPicker3 extends AppCompatActivity {
 
     ConstraintLayout mLayout1;
@@ -25,19 +28,15 @@ public class ColorPicker3 extends AppCompatActivity {
         setContentView(R.layout.activity_color_picker3);
 
         mLayout1 = (ConstraintLayout) findViewById(R.id.layout);
-        //mLayout2 = (ConstraintLayout) findViewById(R.id.layout);
-        //mLayout3 = (ConstraintLayout) findViewById(R.id.layout);
 
-                                                                          // This is not the cause of the second and third Color Pickers not opening.
+
         mDefaultColor1 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_primary); // R.color.colorPrimary
         mDefaultColor2 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_secondary); // R.color.colorSecondary
         mDefaultColor3 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_background); // R.color.colorBackground
 
-        // This area being first has nothing to do with the second and third Color Pickers not opening.
         Button mButton1 = (Button) findViewById(R.id.button1);
         mButton1.setOnClickListener(view -> {
 
-            // Commenting out this line causes the first Color Picker not to open either.
             openColorPicker1();
         });
 
@@ -46,6 +45,30 @@ public class ColorPicker3 extends AppCompatActivity {
 
         Button mButton3 = (Button) findViewById(R.id.button3);
         mButton3.setOnClickListener(view -> openColorPicker3());
+
+
+        Button weeklyButton = findViewById(R.id.weeklyButton);
+
+        // Set a listener for the button's OnClickListener
+        weeklyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new color picker dialog
+                ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
+
+                // Set a listener for when a color is selected
+                colorPickerDialog.setOnColorSelectedListener(new OnColorSelectedListener() {
+                    @Override
+                    public void onColorSelected(int selectedColor) {
+                        // Set the selected color as the background color of the button view
+                        weeklyButton.setBackgroundColor(selectedColor);
+                    }
+                });
+
+                // Show the color picker dialog
+                colorPickerDialog.show(getSupportFragmentManager(), "colorPicker");
+            }
+        });
     }
 
     public void openColorPicker1() {
@@ -90,24 +113,23 @@ public class ColorPicker3 extends AppCompatActivity {
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 mDefaultColor3 = color;
-                mLayout1.setBackgroundColor(mDefaultColor3);
+                mLayout1.setOutlineSpotShadowColor(mDefaultColor3);
             }
         });
         colorPicker3.show();
     }
 
+
+
     public void monthlyAction(View view) {
         startActivity(new Intent(this, MainActivity.class));
-
     }
 
     public void weeklyAction(View view) {
         startActivity(new Intent(this, WeeklyViewActivity.class));
-
     }
 
     public void dailyAction(View view) {
         startActivity(new Intent(this, DailyCalendarActivity.class));
-
     }
 }

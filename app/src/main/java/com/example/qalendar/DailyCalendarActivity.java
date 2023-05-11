@@ -65,25 +65,30 @@ public class DailyCalendarActivity extends AppCompatActivity
         LocalTime currentTime = now.toLocalTime();
         ArrayList<HourEvent> list = new ArrayList<>();
 
-        for (int hour = 0; hour < 24; hour++)
-        {
-            LocalTime time = LocalTime.of(hour, 0);
+        for (int hour = 0; hour < 24; hour++) {
+            LocalTime time;
+
+            if (hour == currentTime.getHour()) {
+                int minutes = currentTime.getMinute();
+                if (minutes >= 30) {
+                    time = LocalTime.of(hour, 30);
+                } else {
+                    time = LocalTime.of(hour, 0);
+                }
+            } else {
+                time = LocalTime.of(hour, 0);
+            }
+
             ArrayList<Event> events = Event.eventsForDateAndTime(selectedDate, time);
             HourEvent hourEvent = new HourEvent(time, events);
             list.add(hourEvent);
 
-            if (hour == currentTime.getHour())
-            {
-                if (currentTime.getMinute() >= 30)
-                {
-                    continue;
-                }
+            if (hour != 23) {
+                time = LocalTime.of(hour, 30);
+                events = Event.eventsForDateAndTime(selectedDate, time);
+                hourEvent = new HourEvent(time, events);
+                list.add(hourEvent);
             }
-
-            time = LocalTime.of(hour, 30);
-            events = Event.eventsForDateAndTime(selectedDate, time);
-            hourEvent = new HourEvent(time, events);
-            list.add(hourEvent);
         }
 
         return list;
