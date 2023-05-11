@@ -9,13 +9,14 @@
 
     <TextView
         android:id="@+id/captionIv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:textSize="25dp"
         android:layout_marginTop="50dp"
-        android:text="Welcome to Google SignIn"
+        android:text="Welcome"
         style="@style/TextAppearance.MaterialComponents.Body1"/>
 
     <ImageView

@@ -56,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         
     }
 
-    private void SignOut() {
+    public void SignOut() {
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -69,4 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+    public void continueAction(View view) {
+        startActivity(new Intent(this, MonthlyViewActivity.class));
+    }
 }
