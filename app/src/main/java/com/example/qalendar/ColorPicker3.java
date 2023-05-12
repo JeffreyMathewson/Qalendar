@@ -49,26 +49,28 @@ public class ColorPicker3 extends AppCompatActivity {
 
         Button weeklyButton = findViewById(R.id.weeklyButton);
 
-        // Set a listener for the button's OnClickListener
-        weeklyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create a new color picker dialog
-                ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
-
-                // Set a listener for when a color is selected
-                colorPickerDialog.setOnColorSelectedListener(new OnColorSelectedListener() {
-                    @Override
-                    public void onColorSelected(int selectedColor) {
-                        // Set the selected color as the background color of the button view
-                        weeklyButton.setBackgroundColor(selectedColor);
-                    }
-                });
-
-                // Show the color picker dialog
-                colorPickerDialog.show(getSupportFragmentManager(), "colorPicker");
-            }
-        });
+        /*
+        ColorPickerDialogBuilder
+    .with(context)
+    .setTitle("Choose Color")
+    .initialColor(Color.RED)
+    .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+    .density(12)
+    .setPositiveButton("OK", new ColorPickerClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+            // Do something with the selected color
+        }
+    })
+    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // Do something when the user cancels the dialog
+        }
+    })
+    .build()
+    .show();
+    */
     }
 
     public void openColorPicker1() {
