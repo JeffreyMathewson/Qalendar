@@ -21,7 +21,22 @@ ProfileActivity profileActivity;
         setContentView(R.layout.activity_settings);
     }
 
-    public void logoutActivity(View view) {
+    public void profileActivity(View view) {
         startActivity(new Intent(this, ProfileActivity.class));
+    }
+
+    public void dailyAction(View view) {
+        startActivity(new Intent(this, DailyCalendarActivity.class));
+
+    }
+
+    public void weeklyAction(View view) {
+        startActivity(new Intent(this, WeeklyViewActivity.class));
+
+    }
+
+    public void monthlyAction(View view) {
+        startActivity(new Intent(this, MonthlyViewActivity.class));
+
     }
 }
