@@ -72,4 +72,8 @@ public class ProfileActivity extends AppCompatActivity {
     public void continueAction(View view) {
         startActivity(new Intent(this, MonthlyViewActivity.class));
     }
+
+    public void settingsAction(View view) {
+        startActivity(new Intent(this, Settings.class));
+    }
 }

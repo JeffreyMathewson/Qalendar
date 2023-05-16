@@ -106,4 +106,8 @@ public class DailyCalendarActivity extends AppCompatActivity
     {
         startActivity(new Intent(this, MonthlyViewActivity.class));
     }
+
+    public void settingsAction(View view) {
+        startActivity(new Intent(this, Settings.class));
+    }
 }

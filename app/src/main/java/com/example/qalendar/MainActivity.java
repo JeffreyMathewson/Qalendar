@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private static final String TAG = "GOOGLE_SIGN_IN_TAG";
     FirebaseFirestore firestore;
+    private MonthlyViewActivity monthlyViewActivity;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity
                         // same time, respect the user's decision. Don't link to system
                         // settings in an effort to convince the user to change their
                         // decision.
-                        requestNotificationPermission();
+                        //requestNotificationPermission();
                     }
                 });
 
@@ -144,34 +145,24 @@ public class MainActivity extends AppCompatActivity
     //</editor-fold>
 
     //<editor-fold desc="Notification Permission Request Method">
-    private void requestNotificationPermission() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Notification Permissions Required");
-        builder.setMessage("Qalender requires notification permissions to reach its full potential. Please enable notifications in your settings, then re-launch the app.");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Ask for notification permission again
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
-    }
+//    private void requestNotificationPermission() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Notification Permissions Required");
+//        builder.setMessage("Qalender requires notification permissions to reach its full potential. Please enable notifications in your settings, then re-launch the app.");
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                // Ask for notification permission again
+//                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+//            }
+//        });
+//        builder.setCancelable(false);
+//        builder.show();
+//    }
     //</editor-fold>
 
 
     //<editor-fold desc="OnItemClick Action">
-    @Override
-    public void OnItemClick(int position, LocalDate date) {
-        if (date != null) {
-            CalendarUtils.selectedDate = date;
-            setMonthView();
-        }
-            sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
-
-    }
-
     private void SignIn() {
         Intent intent = gsc.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
