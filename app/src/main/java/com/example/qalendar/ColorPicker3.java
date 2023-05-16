@@ -11,8 +11,10 @@ import android.widget.Button;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-import com.github.QuadFlask.colorpicker.ColorPickerDialog;
-import com.github.QuadFlask.colorpicker.OnColorSelectedListener;
+//import com.github.QuadFlask.colorpicker.ColorPickerDialog;
+//import com.github.QuadFlask.colorpicker.OnColorSelectedListener;
+
+
 
 public class ColorPicker3 extends AppCompatActivity {
 
