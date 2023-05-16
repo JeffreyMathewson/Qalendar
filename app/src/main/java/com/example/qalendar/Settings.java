@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.Task;
 public class Settings extends AppCompatActivity {
 
     GoogleSignInClient gsc;
-ProfileActivity profileActivity;
+    ProfileActivity profileActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
