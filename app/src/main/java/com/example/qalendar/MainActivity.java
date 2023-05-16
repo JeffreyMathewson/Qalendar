@@ -55,7 +55,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
 {
-  
+
     //<editor-fold desc="Permission initialization">
     private static final int NOTIFICATION_PERMISSION_CODE = 1;
     private static final int PERMISSION_REQUEST_NOTIFICATION = 1;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
             // The registered ActivityResultCallback gets the result of this request.
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
         }
-        
+
         oneTapClient = Identity.getSignInClient(this);
         signInRequest = BeginSignInRequest.builder()
                 .setPasswordRequestOptions(BeginSignInRequest
@@ -160,23 +160,11 @@ public class MainActivity extends AppCompatActivity
     }
     //</editor-fold>
 
-
-    //<editor-fold desc="OnItemClick Action">
-    @Override
-    public void OnItemClick(int position, LocalDate date) {
-        if (date != null) {
-            CalendarUtils.selectedDate = date;
-            setMonthView();
-        }
-            sendNotification(this, "TEST NOTIFICATION", "This has been a test of the notification system");
-
-    }
-
     private void SignIn() {
         Intent intent = gsc.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
     }
-    
+
     private void checkUser() {
         //if user is already signed in, take them to Profile Activity class
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
