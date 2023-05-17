@@ -30,6 +30,8 @@ public class ColorPicker3 extends AppCompatActivity {
     int mDefaultColor2;
     int mDefaultColor3;
 
+    private ColorPickerListener listener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,11 @@ public class ColorPicker3 extends AppCompatActivity {
     .density(12)
     .setPositiveButton("Apply", (dialog, selectedColor, allColors) -> {
         // Do something with the selected color
+        mDefaultColor2 = selectedColor;
+        if (listener != null)
+        {
+            listener.onColorSelected(selectedColor);
+        }
     })
     .setNegativeButton("Cancel", (dialog, which) -> {
         // Do something when the user cancels the dialog
