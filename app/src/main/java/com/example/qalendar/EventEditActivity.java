@@ -66,13 +66,10 @@ public class EventEditActivity extends AppCompatActivity
 
     //Event time picker methods
     public void startTimePicker(View view) {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
-                hour = selectedHour;
-                minute = selectedMinute;
-                startButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-            }
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = (view1, selectedHour, selectedMinute) -> {
+            hour = selectedHour;
+            minute = selectedMinute;
+            startButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
         };
 
         int style = AlertDialog.THEME_HOLO_DARK;
@@ -83,13 +80,10 @@ public class EventEditActivity extends AppCompatActivity
     }
 
     public void endTimePicker(View view) {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
-                hour = selectedHour;
-                minute = selectedMinute;
-                startButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-            }
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = (view1, selectedHour, selectedMinute) -> {
+            hour = selectedHour;
+            minute = selectedMinute;
+            startButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
         };
 
         int style = AlertDialog.THEME_HOLO_DARK;

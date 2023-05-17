@@ -1,11 +1,10 @@
 buildscript {
     repositories {
-        // Make sure that you have the following two repositories
-        google()  // Google's Maven repository
-        mavenCentral()  // Maven Central repository
+           google()
+           mavenCentral()
+     }
+  }
 
-    }
-}
 
 plugins {
     id 'com.android.application'
@@ -55,6 +54,10 @@ dependencies {
 dependencies {
 
 
+    implementation 'com.google.android.gms:play-services-analytics:18.0.2'
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
+    implementation 'com.google.android.gms:play-services-analytics:18.0.2'
+    implementation 'androidx.core:core:1.10.1'
     implementation 'com.google.firebase:firebase-database-ktx:20.2.1'
     implementation 'com.google.firebase:firebase-database:20.2.1'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.2.2'
@@ -79,7 +82,7 @@ dependencies {
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
 
 //    implementation 'com.android.support:appcompat-v7:<version>'
-//    implementation 'com.github.QuadFlask:colorpicker:<version>'
+    implementation 'com.github.QuadFlask:colorpicker:0.0.15'
 }
 
 allprojects {

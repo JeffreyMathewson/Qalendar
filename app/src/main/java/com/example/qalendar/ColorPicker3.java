@@ -4,10 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -29,50 +35,41 @@ public class ColorPicker3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_picker3);
 
-        mLayout1 = (ConstraintLayout) findViewById(R.id.layout);
+        mLayout1 = findViewById(R.id.layout);
 
 
         mDefaultColor1 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_primary); // R.color.colorPrimary
         mDefaultColor2 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_secondary); // R.color.colorSecondary
         mDefaultColor3 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_background); // R.color.colorBackground
 
-        Button mButton1 = (Button) findViewById(R.id.button1);
-        mButton1.setOnClickListener(view -> {
+        Button mButton1 = findViewById(R.id.button1);
+        mButton1.setOnClickListener(view -> openColorPicker1());
 
-            openColorPicker1();
-        });
-
-        Button mButton2 = (Button) findViewById(R.id.button2);
+        Button mButton2 = findViewById(R.id.button2);
         mButton2.setOnClickListener(view -> openColorPicker2());
 
-        Button mButton3 = (Button) findViewById(R.id.button3);
+        Button mButton3 = findViewById(R.id.button3);
         mButton3.setOnClickListener(view -> openColorPicker3());
 
 
         Button weeklyButton = findViewById(R.id.weeklyButton);
 
-        /*
+
         ColorPickerDialogBuilder
-    .with(context)
+    .with(this)
     .setTitle("Choose Color")
     .initialColor(Color.RED)
     .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
     .density(12)
-    .setPositiveButton("OK", new ColorPickerClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-            // Do something with the selected color
-        }
+    .setPositiveButton("Apply", (dialog, selectedColor, allColors) -> {
+        // Do something with the selected color
     })
-    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            // Do something when the user cancels the dialog
-        }
+    .setNegativeButton("Cancel", (dialog, which) -> {
+        // Do something when the user cancels the dialog
     })
     .build()
     .show();
-    */
+
     }
 
     public void openColorPicker1() {
