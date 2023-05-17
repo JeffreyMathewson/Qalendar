@@ -20,7 +20,9 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 //import com.github.QuadFlask.colorpicker.ColorPickerDialog;
 //import com.github.QuadFlask.colorpicker.OnColorSelectedListener;
 
-
+interface ColorPickerListener {
+    void onColorSelected(int color);
+}
 
 public class ColorPicker3 extends AppCompatActivity {
 
