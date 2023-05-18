@@ -20,9 +20,9 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 //import com.github.QuadFlask.colorpicker.ColorPickerDialog;
 //import com.github.QuadFlask.colorpicker.OnColorSelectedListener;
 
-interface ColorPickerListener {
-    void onColorSelected(int color);
-}
+//interface ColorPickerListener {
+//    void onColorSelected(int color);
+//}
 
 public class ColorPicker3 extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class ColorPicker3 extends AppCompatActivity {
     int mDefaultColor2;
     int mDefaultColor3;
 
-    private ColorPickerListener listener2;
+    //private ColorPickerListener listener2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,33 +56,33 @@ public class ColorPicker3 extends AppCompatActivity {
         mButton3.setOnClickListener(view -> openColorPicker3());
 
 
-        Button weeklyButton = findViewById(R.id.weeklyButton);
+//        Button weeklyButton = findViewById(R.id.weeklyButton);
     }
 
-    public void setListener(ColorPickerListener listener2) { this.listener2 = listener2; }
+//    public void setListener(ColorPickerListener listener2) { this.listener2 = listener2; }
 
-    public void openColorPicker2(String pickerTitle)
-    {
-        ColorPickerDialogBuilder
-                .with(this)
-                .setTitle(pickerTitle)
-                .initialColor(mDefaultColor2)
-                .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-                .density(12)
-                .setPositiveButton("Apply", (dialog, selectedColor, allColors) -> {
-                    // Do something with the selected color
-                    mDefaultColor2 = selectedColor;
-                    if (listener2 != null)
-                    {
-                        listener2.onColorSelected(selectedColor);
-                    }
-                })
-                .setNegativeButton("Cancel", (dialog, which) -> {
-                    // Do something when the user cancels the dialog
-                })
-                .build()
-                .show();
-    }
+//    public void openColorPicker2(String pickerTitle)
+//    {
+//        ColorPickerDialogBuilder
+//                .with(this)
+//                .setTitle(pickerTitle)
+//                .initialColor(mDefaultColor2)
+//                .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+//                .density(12)
+//                .setPositiveButton("Apply", (dialog, selectedColor, allColors) -> {
+//                    // Do something with the selected color
+//                    mDefaultColor2 = selectedColor;
+//                    if (listener2 != null)
+//                    {
+//                        listener2.onColorSelected(selectedColor);
+//                    }
+//                })
+//                .setNegativeButton("Cancel", (dialog, which) -> {
+//                    // Do something when the user cancels the dialog
+//                })
+//                .build()
+//                .show();
+//    }
 
     public void openColorPicker1() {
         AmbilWarnaDialog colorPicker1 = new AmbilWarnaDialog(this, mDefaultColor1, new AmbilWarnaDialog.OnAmbilWarnaListener() {

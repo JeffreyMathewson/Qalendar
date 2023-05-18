@@ -82,6 +82,13 @@ dependencies {
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
 
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
+
+    // This implementation didn't seem to make a difference.
+//    implementation('org.jetbrains.kotlin:kotlin-stdlib:1.8.10') {
+//        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+//        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+//    }
+
 }
 
 // I deleted the allprojects thing, but I still got the "Duplicate class found" error again.
