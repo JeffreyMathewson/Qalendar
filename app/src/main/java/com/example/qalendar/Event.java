@@ -62,8 +62,8 @@ public class Event extends AppCompatActivity
     private String name;
     private LocalDate date;
     private LocalTime time;
-    private Date startTime;
-    private Date endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private String location;
 
 
@@ -92,12 +92,18 @@ public class Event extends AppCompatActivity
     }
 
 
-    public Event(String title, Date startTime, Date endTime, LocalDate date, String description) {
+    public Event(String title, LocalTime startTime, LocalTime endTime, LocalDate date, String description) {
         this.name = title;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
         this.description = description;
+    }
+
+    public Event(String title, LocalDate date, LocalTime startTime){
+        this.name = title;
+        this.date = date;
+        this.startTime = startTime;
     }
 
     EditText editText;
@@ -107,19 +113,19 @@ public class Event extends AppCompatActivity
     DatabaseReference dbRef;
     FirebaseFirestore fRef;
 
-    public Date getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 

@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,11 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -30,14 +34,15 @@ public class EventEditActivity extends AppCompatActivity
 {
     private EditText eventNameET;
     private TextView eventDateET, eventTimeET, descriptionEt;
-    private Button startTimeButton, endTimeButton;
-    private LocalTime time;
-    private Event event;
-    FirebaseFirestore firestore;
+    protected Button startTimeButton, endTimeButton, saveButton;
 
+    private Event event;
+    private LocalTime time;
+    private String eventName;
+    FirebaseFirestore firestore;
+    private MainActivity mainActivity;
 
     //Event Time picker variables
-    Button startButton;
     int hour, minute;
 
     @SuppressLint("SetTextI18n")
@@ -46,42 +51,57 @@ public class EventEditActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
+
         initWidgets();
-
-        time = LocalTime.now();
-
         //Event Time picker logic
-        startButton = findViewById(R.id.startTimeButton);
+        startTimeButton = findViewById(R.id.startTimeButton);
+
 
     }
+
     private void initWidgets()
     {
         descriptionEt = findViewById(R.id.descriptionEt);
-        eventNameET = findViewById(R.id.eventNameET);
         eventDateET = findViewById(R.id.eventDateET);
         eventTimeET = findViewById(R.id.eventTimeET);
         startTimeButton = findViewById(R.id.startTimeButton);
         endTimeButton = findViewById(R.id.endTimeButton);
+        saveButton = (Button) findViewById(R.id.saveButtonBT);
+        eventNameET = findViewById(R.id.fuckingWORKET);
     }
 
 
     public void saveEventAction(View view)
     {
-        LocalDate date = LocalDate.now();
-        //event = new Event(eventNameET, date ,startTimeButton, endTimeButton, descriptionEt);
-        firestore = FirebaseFirestore.getInstance();
+        mainActivity.saveSHITPLS();
+    }
+    private void addDataToFirestore(String name, String date, String description) {
+        CollectionReference firestoreEvents = firestore.collection("Events");
 
-        finish();
+        EventEditActivity editActivity = new EventEditActivity(name, date, description);
+
+        firestoreEvents.add(editActivity).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(EventEditActivity.this, "success", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(EventEditActivity.this, "failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     //Event time picker methods
     public void startTimePicker(View view) {
+
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
                 hour = selectedHour;
                 minute = selectedMinute;
-                startButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                startTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 
@@ -89,6 +109,7 @@ public class EventEditActivity extends AppCompatActivity
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, true);
         timePickerDialog.setTitle("Select Start Time");
+
         timePickerDialog.show();
     }
 
@@ -98,7 +119,7 @@ public class EventEditActivity extends AppCompatActivity
             public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
                 hour = selectedHour;
                 minute = selectedMinute;
-                startButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                endTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 
@@ -107,5 +128,34 @@ public class EventEditActivity extends AppCompatActivity
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeListener, hour, minute, true);
         timePickerDialog.setTitle("Select End Time");
         timePickerDialog.show();
+    }
+
+    private String name, description, date;
+
+    public EventEditActivity(){
+
+    }
+    public EventEditActivity(String name, String description, String date){
+        this.name = name;
+        this.description = description;
+        this.date = date;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setDate(String date) {
+        this.date = date;
     }
 }

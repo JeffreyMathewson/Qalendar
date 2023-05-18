@@ -10,8 +10,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,16 +48,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends MonthlyViewActivity
 {
   
     //<editor-fold desc="Permission initialization">
@@ -61,6 +67,12 @@ public class MainActivity extends AppCompatActivity
     private static final int PERMISSION_REQUEST_NOTIFICATION = 1;
     private ActivityResultLauncher<String> requestPermissionLauncher;
     //</editor-fold>
+
+    private EditText eventNameET, descriptionEt;
+    private TextView eventDateET, eventTimeET;
+    private Button startTimeButton, endTimeButton, saveButton;
+    private String name, description, date;
+
 
     SignInClient oneTapClient;
     BeginSignInRequest signInRequest;
@@ -70,14 +82,17 @@ public class MainActivity extends AppCompatActivity
     private GoogleSignInOptions gso;
     private FirebaseAuth firebaseAuth;
     private static final String TAG = "GOOGLE_SIGN_IN_TAG";
-    FirebaseFirestore firestore;
-    private MonthlyViewActivity monthlyViewActivity;
+    private View view;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firestore = FirebaseFirestore.getInstance();
+        EventEditActivity eventEditActivity = new EventEditActivity();
+        MonthlyViewActivity monthlyViewActivity = new MonthlyViewActivity();
+
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
         //<editor-fold desc="Permission Requesting at runtime">
         // Register the permissions callback, which handles the user's response to the
         // system permissions dialog. Save the return value, an instance of
@@ -141,7 +156,38 @@ public class MainActivity extends AppCompatActivity
         });
 
         //</editor-fold>
+
+        //<editor-fold desc="Saving Events to FB">
+
+        initWidgets();
+        saveSHITPLS();
+
+
+//        Map<String,Object> events = new HashMap<>();
+//        events.put("event Name", eventNameET);
+//        events.put("start time", eventTimeET);
+//        events.put("End Time", 0);
+//        events.put("Priority", 2);
+//        events.put("date", eventDateET);
+//        events.put("description", descriptionEt);
+//        firestore.collection("tests").add(events).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//            @Override
+//            public void onSuccess(DocumentReference documentReference) {
+//                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
+//            }
+//        });
+
+
+        //</editor-fold>
+
     }
+
+
     //</editor-fold>
 
     //<editor-fold desc="Notification Permission Request Method">
@@ -161,6 +207,12 @@ public class MainActivity extends AppCompatActivity
 //    }
     //</editor-fold>
 
+    public void saveSHITPLS(){
+
+        String input = eventNameET.getText().toString();
+        Event newEvent = new Event(input, CalendarUtils.selectedDate, LocalTime.now());
+        Event.eventsList.add(newEvent);
+    }
 
     //<editor-fold desc="OnItemClick Action">
     private void SignIn() {
@@ -202,6 +254,8 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
         startActivity(intent);
     }
+
+
 
 //    private void firebaseAuthWithGoogleAccount(GoogleSignInAccount account) {
 //        Log.d(TAG, "firebaseAuthWithGoogleAccount: begin firebase auth with google account");

@@ -3,25 +3,35 @@ package com.example.qalendar;
 import static com.example.qalendar.CalendarUtils.daysInMonthArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class MonthlyViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
+public class MonthlyViewActivity extends EventEditActivity implements CalendarAdapter.OnItemListener{
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+    private EditText eventNameET;
+    private TextView eventDateET, eventTimeET, descriptionEt;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,10 +43,14 @@ public class MonthlyViewActivity extends AppCompatActivity implements CalendarAd
         setMonthView();
     }
 
-    public void initWidgets()
+    protected void initWidgets()
     {
         calendarRecyclerView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthyeartv);
+        descriptionEt = findViewById(R.id.descriptionEt);
+        eventNameET = findViewById(R.id.fuckingWORKET);
+        eventDateET = findViewById(R.id.eventDateET);
+        eventTimeET = findViewById(R.id.eventTimeET);
     }
     public void setMonthView()
     {

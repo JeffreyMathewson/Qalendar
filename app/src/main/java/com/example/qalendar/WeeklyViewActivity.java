@@ -84,7 +84,6 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
         eventListView.setAdapter(eventAdapter);
     }
 
-
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
@@ -94,6 +93,7 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
     {
         startActivity(new Intent(this, DailyCalendarActivity.class));
     }
+
     public void monthlyAction(View view)
     {
         startActivity(new Intent(this, MonthlyViewActivity.class));

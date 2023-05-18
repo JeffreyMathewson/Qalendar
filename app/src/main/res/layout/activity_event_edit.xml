@@ -20,13 +20,15 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/eventNameET"
+        android:id="@+id/fuckingWORKET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:ems="10"
         android:inputType="text"/>
+
+
 
     <TextView
         android:id="@+id/eventDateET"
@@ -90,6 +92,7 @@
         android:inputType="text"/>
 
     <Button
+        android:id="@+id/saveButtonBT"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
