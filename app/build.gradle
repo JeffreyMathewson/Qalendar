@@ -84,9 +84,6 @@ dependencies {
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
 }
 
-//allprojects {
-//    tasks.withType(JavaCompile) {
-//        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-//    }
-//}
+// I deleted the allprojects thing, but I still got the "Duplicate class found" error again.
+
 
