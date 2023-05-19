@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.qalendar.app-mergeDebugResources-35:/values-xlarge-land-v4/values-xlarge-land-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\japhe\\.gradle\\caches\\transforms-3\\d1a033ffaaae03628404f2b73d3e690c\\transformed\\ambilwarna-2.0.1\\res\\values-xlarge-land\\values-xlarge-land.xml",
+                    "from": {
+                        "startLines": "4,5",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,226",
+                        "endColumns": "52,51",
+                        "endOffsets": "221,273"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,108",
+                        "endColumns": "52,51",
+                        "endOffsets": "103,155"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">586130292385-rq7vu49ngh37e3tif4k019ii2jt4mfkb.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">586130292385</string>
+    <string name="google_api_key" translatable="false">AIzaSyBdh7DLzIepg53wMGbu-QJ8zzR7WX8ZnsI</string>
+    <string name="google_app_id" translatable="false">1:586130292385:android:1b45904f110f9fe979bae0</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBdh7DLzIepg53wMGbu-QJ8zzR7WX8ZnsI</string>
+    <string name="google_storage_bucket" translatable="false">qalendar-true.appspot.com</string>
+    <string name="project_id" translatable="false">qalendar-true</string>
+</resources>
