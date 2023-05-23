@@ -53,40 +53,44 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private ColorPicker colorPicker = new ColorPicker();
 
 
+
+    // This is for trying to change the background color from the ColorPicker3 class.
+    public void updateBackgroundColor(int color) {
+        getWindow().getDecorView().setBackgroundColor(color);
+    }
+
+
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firestore = FirebaseFirestore.getInstance();
 
-        //need start,end,name.duration,description
+
+        // This is for trying to change the background color from the ColorPicker3 class:
+            // Retrieve the color value from the intent's extras
+        int backgroundColor = getIntent().getIntExtra("BACKGROUND_COLOR", Color.WHITE);
+
+            // Update the background color
+        updateBackgroundColor(backgroundColor);
+
+
+        //need start, end, name.duration, description
         Map<String,Object> user = new HashMap<>();
         user.put("firstName", "Easy");
         user.put("lastName", "Hard");
         user.put("description", "PLs Work");
-        firestore.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show();
-            }
-        });
+        firestore.collection("users").add(user).addOnSuccessListener(documentReference -> Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show());
 
 
 
         colorButton1 = findViewById(R.id.colorButton1);
-        colorButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle button click event
-                //openColorPicker(v);
+        colorButton1.setOnClickListener(v -> {
+            // Handle button click event
+            //openColorPicker(v);
 
-                startActivity(new Intent(MainActivity.this, ColorPicker3.class));
-            }
+            startActivity(new Intent(MainActivity.this, ColorPicker3.class));
         });
 
 

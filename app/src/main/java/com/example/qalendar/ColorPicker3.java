@@ -34,6 +34,12 @@ public class ColorPicker3 extends AppCompatActivity {
 
     //private ColorPickerListener listener2;
 
+    public void changeMainBackgroundColor(int color) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("BACKGROUND_COLOR", color);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
