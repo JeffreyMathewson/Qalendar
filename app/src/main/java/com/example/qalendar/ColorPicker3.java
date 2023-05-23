@@ -37,17 +37,17 @@ public class ColorPicker3 extends AppCompatActivity {
     // Trigger the method, providing the desired color value as an argument.
         // For example, you could call this method when a button is clicked or based on some other user interaction.
     public void changeBackgroundColors(int color) {
-        Intent intent1 = new Intent(this, MainActivity.class);
         Intent intent2 = new Intent(this, WeeklyViewActivity.class);
         Intent intent3 = new Intent(this, DailyCalendarActivity.class);
+        Intent intent1 = new Intent(this, MainActivity.class);
 
-        intent1.putExtra("BACKGROUND_COLOR", color);
         intent2.putExtra("BACKGROUND_COLOR", color);
         intent3.putExtra("BACKGROUND_COLOR", color);
+        intent1.putExtra("BACKGROUND_COLOR", color);
 
-        startActivity(intent1);
         startActivity(intent2);
         startActivity(intent3);
+        startActivity(intent1);
     }
 
     @Override
