@@ -62,22 +62,13 @@ public class DailyCalendarActivity extends AppCompatActivity
 
     private ArrayList<HourEvent> hourEventList()
     {
-        LocalTime time, time2;
-        ArrayList<Event> events, events2;
-        HourEvent hourEvent;
-        HourEvent halfHourEvent;
         ArrayList<HourEvent> list = new ArrayList<>();
-        ArrayList<HourEvent> list2 = new ArrayList<>();
         for(int hour = 0; hour < 24; hour++)
         {
-            time = LocalTime.of(hour, 0);
-            events = Event.eventsForDateAndTime(selectedDate, time);
-            hourEvent = new HourEvent(time, events);
+            LocalTime time = LocalTime.of(hour,0);
+            ArrayList<Event> events = Event.eventsForDateAndTime(selectedDate, time);
+            HourEvent hourEvent = new HourEvent(time, events);
             list.add(hourEvent);
-            time2 = LocalTime.of(hour, 30);
-            events2 = Event.eventsForDateAndTime(selectedDate, time2);
-            halfHourEvent = new HourEvent(time2, events2);
-            list.add(halfHourEvent);
         }
         return list;
     }

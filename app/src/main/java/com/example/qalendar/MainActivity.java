@@ -160,7 +160,7 @@ public class MainActivity extends MonthlyViewActivity
         //<editor-fold desc="Saving Events to FB">
 
         initWidgets();
-        saveSHITPLS();
+
 
 
 //        Map<String,Object> events = new HashMap<>();
@@ -207,12 +207,7 @@ public class MainActivity extends MonthlyViewActivity
 //    }
     //</editor-fold>
 
-    public void saveSHITPLS(){
 
-        String input = eventNameET.getText().toString();
-        Event newEvent = new Event(input, CalendarUtils.selectedDate, LocalTime.now());
-        Event.eventsList.add(newEvent);
-    }
 
     //<editor-fold desc="OnItemClick Action">
     private void SignIn() {

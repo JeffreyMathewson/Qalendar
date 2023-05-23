@@ -1,5 +1,6 @@
 package com.example.qalendar;
 
+import android.annotation.SuppressLint;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,8 +22,7 @@ import java.util.Date;
 
 public class Event extends AppCompatActivity
 {
-    FirebaseFirestore firestore;
-
+    public static LocalTime localTime;
     public static ArrayList<Event> eventsList = new ArrayList<>();
 
     public static ArrayList<Event> eventsForDate(LocalDate date) {
@@ -39,13 +39,14 @@ public class Event extends AppCompatActivity
 
     public static ArrayList<Event> eventsForDateAndTime(LocalDate date, LocalTime time)
     {
+        localTime = LocalTime.now();
         ArrayList<Event> events = new ArrayList<>();
 
         for (Event event : eventsList)
         {
-            int eventHour = event.time.getHour();
+            int eventHour = localTime.getHour();
             int cellHour = time.getHour();
-            int eventMin = event.time.getMinute();
+            int eventMin = localTime.getMinute();
             int cellMin = time.getMinute();
             if (event.getDate().equals(date) && eventHour == cellHour)
             {
@@ -55,13 +56,14 @@ public class Event extends AppCompatActivity
 
         return events;
     }
+
     public LocalDate getDate() {
         return date;
     }
 
     private String name;
     private LocalDate date;
-    private LocalTime time;
+
     private LocalTime startTime;
     private LocalTime endTime;
     private String location;
@@ -84,11 +86,11 @@ public class Event extends AppCompatActivity
     }
 
     public LocalTime getTime() {
-        return time;
+        return localTime;
     }
 
     public void setTime(LocalTime time) {
-        this.time = time;
+        localTime = time;
     }
 
 
@@ -108,7 +110,7 @@ public class Event extends AppCompatActivity
 
     EditText editText;
 
-    String stringDateSelected = "null";
+    String stringDateSelected;
 
     DatabaseReference dbRef;
     FirebaseFirestore fRef;
@@ -154,6 +156,7 @@ public class Event extends AppCompatActivity
 
         dbRef.child(stringDateSelected).addListenerForSingleValueEvent(new ValueEventListener() {
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.getValue() != null) {

@@ -6,8 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,25 +13,21 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class EventEditActivity extends AppCompatActivity
 {
     private EditText eventNameET;
-    private TextView eventDateET, eventTimeET, descriptionEt;
+    private int eventDateET;
+    private TextView eventTimeET;
+    private int descriptionEt;
     protected Button startTimeButton, endTimeButton, saveButton;
 
     private Event event;
@@ -54,15 +48,12 @@ public class EventEditActivity extends AppCompatActivity
 
         initWidgets();
         //Event Time picker logic
-        startTimeButton = findViewById(R.id.startTimeButton);
-
-
     }
 
     private void initWidgets()
     {
-        descriptionEt = findViewById(R.id.descriptionEt);
-        eventDateET = findViewById(R.id.eventDateET);
+        descriptionEt = (R.id.descriptionEt);
+        eventDateET = (R.id.eventDateET);
         eventTimeET = findViewById(R.id.eventTimeET);
         startTimeButton = findViewById(R.id.startTimeButton);
         endTimeButton = findViewById(R.id.endTimeButton);
@@ -73,8 +64,12 @@ public class EventEditActivity extends AppCompatActivity
 
     public void saveEventAction(View view)
     {
-        mainActivity.saveSHITPLS();
+        String input = eventNameET.getText().toString().trim();
+        Event newEvent = new Event(input, CalendarUtils.selectedDate, LocalTime.now());
+        Event.eventsList.add(newEvent);
+        finish();
     }
+
     private void addDataToFirestore(String name, String date, String description) {
         CollectionReference firestoreEvents = firestore.collection("Events");
 
@@ -92,6 +87,7 @@ public class EventEditActivity extends AppCompatActivity
             }
         });
     }
+
 
     //Event time picker methods
     public void startTimePicker(View view) {
