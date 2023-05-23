@@ -34,10 +34,20 @@ public class ColorPicker3 extends AppCompatActivity {
 
     //private ColorPickerListener listener2;
 
-    public void changeMainBackgroundColor(int color) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("BACKGROUND_COLOR", color);
-        startActivity(intent);
+    // Trigger the method, providing the desired color value as an argument.
+        // For example, you could call this method when a button is clicked or based on some other user interaction.
+    public void changeBackgroundColors(int color) {
+        Intent intent1 = new Intent(this, MainActivity.class);
+        Intent intent2 = new Intent(this, WeeklyViewActivity.class);
+        Intent intent3 = new Intent(this, DailyCalendarActivity.class);
+
+        intent1.putExtra("BACKGROUND_COLOR", color);
+        intent2.putExtra("BACKGROUND_COLOR", color);
+        intent3.putExtra("BACKGROUND_COLOR", color);
+
+        startActivity(intent1);
+        startActivity(intent2);
+        startActivity(intent3);
     }
 
     @Override
@@ -101,6 +111,7 @@ public class ColorPicker3 extends AppCompatActivity {
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 mDefaultColor1 = color;
                 mLayout1.setBackgroundColor(mDefaultColor1);
+                changeBackgroundColors(color);
             }
         });
         colorPicker1.show();

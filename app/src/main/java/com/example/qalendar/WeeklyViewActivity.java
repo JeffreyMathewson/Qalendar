@@ -4,6 +4,7 @@ import static com.example.qalendar.CalendarUtils.daysInWeekArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -23,10 +24,25 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
 
+
+    // This is for trying to change the background color from the ColorPicker3 class.
+    public void updateBackgroundColor(int color) {
+        getWindow().getDecorView().setBackgroundColor(color);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_view);
+
+        // This is for trying to change the background color from the ColorPicker3 class:
+        // Retrieve the color value from the intent's extras
+        int backgroundColor = getIntent().getIntExtra("BACKGROUND_COLOR", Color.WHITE);
+
+        // Update the background color
+        updateBackgroundColor(backgroundColor);
+
         initWidgets();
         setWeekView();
     }
