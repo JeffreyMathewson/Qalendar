@@ -17,10 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class ProfileActivity extends AppCompatActivity {
-
     TextView name, email;
     Button logout;
-
     GoogleSignInClient gsc;
     GoogleSignInOptions gso;
     @Override
@@ -36,7 +34,6 @@ public class ProfileActivity extends AppCompatActivity {
                 .build();
         gsc = GoogleSignIn.getClient(this, gso);
 
-
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null){
             String Name = account.getDisplayName();
@@ -45,7 +42,6 @@ public class ProfileActivity extends AppCompatActivity {
             name.setText(Name);
             email.setText(Email);
         }
-        
         logout.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -53,9 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
                 SignOut();
             }
         });
-        
     }
-
     public void SignOut() {
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -64,15 +58,10 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
-
-
     }
-
-
     public void continueAction(View view) {
         startActivity(new Intent(this, MonthlyViewActivity.class));
     }
-
     public void settingsAction(View view) {
         startActivity(new Intent(this, Settings.class));
     }
