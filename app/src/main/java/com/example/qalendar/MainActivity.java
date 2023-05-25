@@ -41,12 +41,14 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
     private LinearLayout mLayout;
 
-    int mDefaultColor1;
-    int mDefaultColor2;
-    int mDefaultColor3;
+//    int mDefaultColor1;
+//    int mDefaultColor2;
+//    int mDefaultColor3;
 
     private Button colorButton1;
     //private Button colorButton2;
+
+    int backgroundColor;
 
 
     FirebaseFirestore firestore;
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
         // This is for trying to change the background color from the ColorPicker3 class:
             // Retrieve the color value from the intent's extras
-        int backgroundColor = getIntent().getIntExtra("BACKGROUND_COLOR", Color.WHITE);
+        backgroundColor = getIntent().getIntExtra("BACKGROUND_COLOR", Color.WHITE);
 
             // Update the background color
         updateBackgroundColor(backgroundColor);
