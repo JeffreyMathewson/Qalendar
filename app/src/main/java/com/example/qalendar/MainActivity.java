@@ -3,7 +3,9 @@ package com.example.qalendar;
 import static com.example.qalendar.CalendarUtils.daysInMonthArray;
 import static com.example.qalendar.CalendarUtils.monthYearFromDate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -73,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         // This is for trying to change the background color from the ColorPicker3 class:
             // Retrieve the color value from the intent's extras
         backgroundColor = getIntent().getIntExtra("BACKGROUND_COLOR", Color.WHITE);
+
+        // Retrieving and applying the background color value
+        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        backgroundColor = sharedPref.getInt("backgroundColor", Color.WHITE); // Assuming defaultColor is a fallback color value
+        findViewById(R.id.monthLayout).setBackgroundColor(backgroundColor); // Assuming R.id.layout is the root layout of the activity
 
             // Update the background color
         updateBackgroundColor(backgroundColor);

@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +36,7 @@ public class ColorPicker3 extends AppCompatActivity {
 
     //private ColorPickerListener listener2;
 
+
     // Trigger the method, providing the desired color value as an argument.
         // For example, you could call this method when a button is clicked or based on some other user interaction.
     public void changeBackgroundColors(int color) {
@@ -48,6 +51,14 @@ public class ColorPicker3 extends AppCompatActivity {
         startActivity(intent2);
         startActivity(intent3);
         startActivity(intent1);
+
+
+
+        // Storing the background color value
+        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("backgroundColor", color); // Assuming selectedColor is the chosen background color
+        editor.apply();
     }
 
     @Override

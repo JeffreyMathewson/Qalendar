@@ -3101,7 +3101,6 @@ id FLOWER
 id FUNCTION
 id META
 id NO_DEBUG
-id QalendarTitle
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -3374,7 +3373,6 @@ id linear
 id linearLayout1
 id listMode
 id list_item
-id logInButton
 id m3_side_sheet
 id marquee
 id masked
@@ -3629,6 +3627,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id weekLayout
 id weeklyButton
 id west
 id wide
@@ -3758,7 +3757,6 @@ layout activity_color_picker
 layout activity_color_picker3
 layout activity_daily_calendar
 layout activity_event_edit
-layout activity_login
 layout activity_main
 layout activity_monthly_view
 layout activity_weekly_view

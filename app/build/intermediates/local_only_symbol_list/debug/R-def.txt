@@ -14,7 +14,6 @@ drawable dusk
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 font alata
-id QalendarTitle
 id button1
 id button2
 id button3
@@ -36,7 +35,6 @@ id eventTimeET
 id hourListView
 id layout
 id linearLayout1
-id logInButton
 id monthDayText
 id monthLayout
 id monthlyButton
@@ -44,12 +42,12 @@ id monthyeartv
 id parentView
 id startTimeButton
 id timeTV
+id weekLayout
 id weeklyButton
 layout activity_color_picker
 layout activity_color_picker3
 layout activity_daily_calendar
 layout activity_event_edit
-layout activity_login
 layout activity_main
 layout activity_monthly_view
 layout activity_weekly_view
