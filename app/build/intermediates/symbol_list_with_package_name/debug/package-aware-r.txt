@@ -3257,6 +3257,7 @@ id cut
 id dailyButton
 id dark
 id date_picker_actions
+id dayLayout
 id dayOfWeekTV
 id decelerate
 id decelerateAndComplete

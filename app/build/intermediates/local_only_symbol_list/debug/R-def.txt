@@ -22,6 +22,7 @@ id cellDayText
 id colorButton
 id colorButton1
 id dailyButton
+id dayLayout
 id dayOfWeekTV
 id endTimeButton
 id event1

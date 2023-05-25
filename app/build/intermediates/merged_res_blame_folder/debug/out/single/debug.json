@@ -1,134 +1,138 @@
 [
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_event_cell.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/event_cell.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\drawable_dusk.jpg.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\drawable\\dusk.jpg"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_hour_cell.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/hour_cell.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_event_edit.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_event_edit.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_activity_daily_calendar.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/activity_daily_calendar.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_color_picker.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_color_picker.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/xml_backup_rules.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_hour_cell.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\hour_cell.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-mdpi/ic_launcher.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-mdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_activity_event_edit.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/activity_event_edit.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-hdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_activity_color_picker.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/activity_color_picker.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-hdpi\\ic_launcher.png"
     },
     {
         "merged": "com.example.qalendar.app-merged_res-37:/layout_activity_color_picker3.xml.flat",
         "source": "com.example.qalendar.app-main-39:/layout/activity_color_picker3.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_activity_weekly_view.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/activity_weekly_view.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\font_alata.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\font\\alata.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_calendarcell.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\calendarcell.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/drawable-v24/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_daily_calendar.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_daily_calendar.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/font_alata.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/font/alata.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_color_picker3.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_color_picker3.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_activity_monthly_view.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/activity_monthly_view.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-hdpi/ic_launcher_foreground.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-mdpi/ic_launcher_foreground.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_weekly_view.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_weekly_view.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/drawable_dusk.jpg.flat",
-        "source": "com.example.qalendar.app-main-39:/drawable/dusk.jpg"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_activity_main.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/activity_main.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xxhdpi/ic_launcher_foreground.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-xhdpi/ic_launcher_foreground.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_event_cell.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\event_cell.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/layout_calendarcell.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/layout/calendarcell.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_monthly_view.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_monthly_view.xml"
     },
     {
-        "merged": "com.example.qalendar.app-merged_res-37:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.qalendar.app-main-39:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-mdpi\\ic_launcher_round.png"
     }
 ]

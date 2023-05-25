@@ -68,6 +68,13 @@ public class ColorPicker3 extends AppCompatActivity {
 
         mLayout1 = findViewById(R.id.layout);
 
+        // Retrieving and applying the background color value
+        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int backgroundColor = sharedPref.getInt("backgroundColor", Color.WHITE); // Assuming defaultColor is a fallback color value
+        findViewById(R.id.layout).setBackgroundColor(backgroundColor); // Assuming R.id.layout is the root layout of the activity
+
+
+
 
         mDefaultColor1 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_primary); // R.color.colorPrimary
         mDefaultColor2 = ContextCompat.getColor(ColorPicker3.this, com.google.android.material.R.color.design_default_color_secondary); // R.color.colorSecondary

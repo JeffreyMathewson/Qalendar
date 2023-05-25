@@ -6,7 +6,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/dayLayout"
     tools:context=".DailyCalendarActivity">
+
     <RelativeLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
