@@ -85,37 +85,24 @@ public class DailyCalendarActivity extends AppCompatActivity
         hourListView.setAdapter(hourAdapter2);
     }
 
-    private ArrayList<HourEvent> hourEventList() {
-        LocalDateTime now = LocalDateTime.now();
-        LocalTime currentTime = now.toLocalTime();
+    private ArrayList<HourEvent> hourEventList()
+    {
+        LocalDateTime now = null;
+        LocalTime time, time2;
+        ArrayList<Event> events, events2;
+        HourEvent hourEvent;
+        HourEvent halfHourEvent;
+        now = LocalDateTime.now();
         ArrayList<HourEvent> list = new ArrayList<>();
-
-        for (int hour = 0; hour < 24; hour++) {
-            LocalTime time;
-
-            if (hour == currentTime.getHour()) {
-                int minutes = currentTime.getMinute();
-                if (minutes >= 30) {
-                    time = LocalTime.of(hour, 30);
-                } else {
-                    time = LocalTime.of(hour, 0);
-                }
-            } else {
-                time = LocalTime.of(hour, 0);
-            }
-
-            ArrayList<Event> events = Event.eventsForDateAndTime(selectedDate, time);
-            HourEvent hourEvent = new HourEvent(time, events);
+        ArrayList<HourEvent> list2 = new ArrayList<>();
+        for(int hour = 0; hour < 24; hour++)
+        {
+            time = LocalTime.of(hour, 0);
+            events = Event.eventsForDateAndTime(selectedDate, time);
+            hourEvent = new HourEvent(time, events);
             list.add(hourEvent);
 
-            if (hour != 23) {
-                time = LocalTime.of(hour, 30);
-                events = Event.eventsForDateAndTime(selectedDate, time);
-                hourEvent = new HourEvent(time, events);
-                list.add(hourEvent);
-            }
         }
-
         return list;
     }
 
