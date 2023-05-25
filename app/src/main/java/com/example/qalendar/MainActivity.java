@@ -168,8 +168,8 @@ public class MainActivity extends MonthlyViewActivity
 //        events.put("start time", eventTimeET);
 //        events.put("End Time", 0);
 //        events.put("Priority", 2);
-//        events.put("date", eventDateET);
-//        events.put("description", descriptionEt);
+//        events.put("date",
+//        events.put("description", descriptionEt); eventDateET);
 //        firestore.collection("tests").add(events).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //            @Override
 //            public void onSuccess(DocumentReference documentReference) {
@@ -182,9 +182,7 @@ public class MainActivity extends MonthlyViewActivity
 //            }
 //        });
 
-
         //</editor-fold>
-
     }
 
 
