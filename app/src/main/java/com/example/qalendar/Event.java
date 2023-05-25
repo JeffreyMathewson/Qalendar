@@ -53,7 +53,6 @@ public class Event extends AppCompatActivity
                 events.add(event);
             }
         }
-
         return events;
     }
 

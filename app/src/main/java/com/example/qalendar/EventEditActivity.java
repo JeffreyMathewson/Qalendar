@@ -90,10 +90,10 @@ public class EventEditActivity extends AppCompatActivity
 
 // Retrieve data
         database = dbHelper.getReadableDatabase();
-        String[] projection = { "column1", "column2" };
-        String selection = "column1 = ?";
-        String[] selectionArgs = { "value1" };
-        Cursor cursor = database.query("tableName", projection, selection, selectionArgs, null, null, null);
+        String[] projection = { "Event Name", "Event Date", "Start Time", "End Time", "Description"};
+        String selection = "Event Name = ?";
+        String[] selectionArgs = { eventName};
+        Cursor cursor = database.query("Events", projection, selection, selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
             @SuppressLint("Range") String value1 = cursor.getString(cursor.getColumnIndex("column1"));
             @SuppressLint("Range") int value2 = cursor.getInt(cursor.getColumnIndex("column2"));
@@ -107,23 +107,7 @@ public class EventEditActivity extends AppCompatActivity
         finish();
     }
 
-    private void addDataToFirestore(String name, String date, String description) {
-        CollectionReference firestoreEvents = firestore.collection("Events");
 
-        EventEditActivity editActivity = new EventEditActivity(name, date, description);
-
-        firestoreEvents.add(editActivity).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(EventEditActivity.this, "success", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(EventEditActivity.this, "failed", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 
 
@@ -164,34 +148,6 @@ public class EventEditActivity extends AppCompatActivity
         timePickerDialog.show();
     }
 
-    private String name, description, date;
-
-    public EventEditActivity(){
-
-    }
-    public EventEditActivity(String name, String description, String date){
-        this.name = name;
-        this.description = description;
-        this.date = date;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public String getDate() {
-        return date;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public void setDate(String date) {
-        this.date = date;
-    }
 }
 
 
