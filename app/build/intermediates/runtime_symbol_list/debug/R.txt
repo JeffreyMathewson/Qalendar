@@ -3881,6 +3881,7 @@ int string abc_toolbar_collapse_description 0x7f12001a
 int string androidx_startup 0x7f12001b
 int string app_name 0x7f12001c
 int string appbar_scrolling_view_behavior 0x7f12001d
+int string background_color 0x7f1200c7
 int string bottom_sheet_behavior 0x7f12001e
 int string bottomsheet_action_collapse 0x7f12001f
 int string bottomsheet_action_expand 0x7f120020

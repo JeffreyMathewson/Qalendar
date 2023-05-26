@@ -8,12 +8,12 @@
         "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_event_edit.xml.flat",
-        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_event_edit.xml"
-    },
-    {
         "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_color_picker.xml.flat",
         "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_color_picker.xml"
+    },
+    {
+        "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\layout_activity_event_edit.xml.flat",
+        "source": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-main-39:\\layout\\activity_event_edit.xml"
     },
     {
         "merged": "C:\\Users\\japhe\\.gradle\\daemon\\8.0\\com.example.qalendar.app-merged_res-37:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",

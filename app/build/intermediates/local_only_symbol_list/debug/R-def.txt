@@ -59,6 +59,7 @@ mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_name
+string background_color
 string color_picker_1
 string color_picker_2
 string color_picker_3

@@ -17,14 +17,11 @@ import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
+//import com.flask.colorpicker.ColorPickerDialog;
+import com.flask.colorpicker.OnColorSelectedListener;
+
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-//import com.github.QuadFlask.colorpicker.ColorPickerDialog;
-//import com.github.QuadFlask.colorpicker.OnColorSelectedListener;
-
-//interface ColorPickerListener {
-//    void onColorSelected(int color);
-//}
 
 public class ColorPicker3 extends AppCompatActivity {
 
@@ -93,30 +90,6 @@ public class ColorPicker3 extends AppCompatActivity {
 //        Button weeklyButton = findViewById(R.id.weeklyButton);
     }
 
-//    public void setListener(ColorPickerListener listener2) { this.listener2 = listener2; }
-
-//    public void openColorPicker2(String pickerTitle)
-//    {
-//        ColorPickerDialogBuilder
-//                .with(this)
-//                .setTitle(pickerTitle)
-//                .initialColor(mDefaultColor2)
-//                .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-//                .density(12)
-//                .setPositiveButton("Apply", (dialog, selectedColor, allColors) -> {
-//                    // Do something with the selected color
-//                    mDefaultColor2 = selectedColor;
-//                    if (listener2 != null)
-//                    {
-//                        listener2.onColorSelected(selectedColor);
-//                    }
-//                })
-//                .setNegativeButton("Cancel", (dialog, which) -> {
-//                    // Do something when the user cancels the dialog
-//                })
-//                .build()
-//                .show();
-//    }
 
     public void openColorPicker1() {
         AmbilWarnaDialog colorPicker1 = new AmbilWarnaDialog(this, mDefaultColor1, new AmbilWarnaDialog.OnAmbilWarnaListener() {

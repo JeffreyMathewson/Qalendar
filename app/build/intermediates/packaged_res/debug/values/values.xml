@@ -24,6 +24,7 @@
     <color name="lightGray"> #EEE </color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Qalendar</string>
+    <string name="background_color">Background Color</string>
     <string name="color_picker_1">Color Picker 1</string>
     <string name="color_picker_2">Color Picker 2</string>
     <string name="color_picker_3">Color Picker 3</string>
